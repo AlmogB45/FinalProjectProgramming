@@ -1,0 +1,113 @@
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-image: url('./assets/LOGO1.png');
+    background-size: cover;
+  }
+  
+  .left-panel,
+  .right-panel {
+    flex: 1;
+    background-color: rgba(10, 25, 49, 0.8); /* Adjust opacity for glass effect */
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px); /* Apply blur effect for glass-like appearance */
+  }
+  
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .logo img {
+    width: 200px; /* Adjust the width of the logo */
+    height: auto;
+    border-radius: 50%; /* Apply rounded corners to the logo */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Add a subtle shadow effect */
+  }
+  
+  .sign-in-panel,
+  .community-panel {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .sign-in-panel h2 {
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .input-container input {
+    width: 100%;
+  padding: 15px; 
+  border: none;
+  border-radius: 25px; 
+  background-color: rgba(255, 255, 255, 0.2); 
+  color: #fff; 
+  font-size: 16px;
+  outline: none; 
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .checkbox-container input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .right-panel {
+    background-color: rgba(0, 74, 0, 0.5); 
+    text-align: center;
+  }
+  
+  .right-panel h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .right-panel p {
+    font-size: 18px;
+  }
+
+  .btn,
+  .reg {
+    background: rgba(61, 152, 209, 0.9); 
+    border: none; 
+    border-radius: 25px; 
+    color: #fff;
+    font-size: 20px;
+    padding: 12px 24px; 
+    text-decoration: none;
+    display: inline-block; 
+    margin-right: 20px; 
+    cursor: pointer; 
+    transition: 0.3s ease; 
+  }
+  
+  .btn:hover, 
+  .reg:hover {
+    background: rgba(36, 175, 191, 0.9); 
+  }
+
+  
+  .login-link {
+    color: #24afbf; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+  }
+  
+  .login-link:hover {
+    color: #36c9e2; 
+    text-decoration: underline; 
+  }
+  
