@@ -1,12 +1,13 @@
 import React from 'react';
-import Login from './Login'; // Import your Login component
+import Login from './Login'; 
+import Register from './Register';
 
 function App() {
   return (
     <div className="App">
-      <Login />  
+      <Register />  
     </div>
   );
 }
-ממ
+
 export default App;

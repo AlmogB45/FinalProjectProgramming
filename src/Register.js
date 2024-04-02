@@ -16,19 +16,29 @@ function Register() {
                         <div className="input-container">
                             <input type="text" placeholder="Username" />
                         </div>
+
                         <div className="input-container">
                             <input type="email" placeholder="Email" />
                         </div>
+
                         <div className="input-container">
                             <input type="password" placeholder="Password" />
                         </div>
-                        <hr /> 
+
+                        <div className="InfoPrompt">
+                            <h3>Personal Information</h3>
+                            <hr></hr>
+                            
+                        </div>
+
                         <div className="input-container">
                             <input type="tel" placeholder="Phone Number" />
                         </div>
+
                         <div className="input-container">
                             <input type="number" placeholder="Age" />
                         </div>
+
                         <div className="button-container">
                             <button className="btn" type="button">Sign-Up</button>
                         </div>
