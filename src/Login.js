@@ -20,11 +20,14 @@ function Login() {
           <input type="password" placeholder="Password" />
         </div>
         <div className="button-container">
-  <button className="btn" type="submit">Sign In</button>
+  <button className="log" type="submit">Sign In</button>
   <button className="reg" type="button">Register</button>
 
 </div>
+
+<div className='login-link-container'>
 <a href="#" className="login-link">Can't login? Click here!</a>  
+</div>
       </form>
     </div>
     </div>

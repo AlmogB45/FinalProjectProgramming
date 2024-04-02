@@ -1,7 +1,7 @@
 .login-container {
     display: flex;
     height: 100vh;
-    background-image: url('./assets/LOGO1.png');
+    background-image: url('./assets/bg.png');
     background-size: cover;
   }
   
@@ -21,6 +21,8 @@
   .logo {
     text-align: center;
     margin-bottom: 20px;
+    margin-left: 25px ;
+    width: 105%;
   }
 
   .logo img {
@@ -35,9 +37,15 @@
     width: 100%;
     max-width: 300px;
   }
+
+  h2 {
+    text-align: center;
+  }
   
   .sign-in-panel h2 {
     margin-bottom: 20px;
+    width: 110%;
+    
   }
   
   .input-container {
@@ -46,13 +54,13 @@
   
   .input-container input {
     width: 100%;
-  padding: 15px; 
-  border: none;
-  border-radius: 25px; 
-  background-color: rgba(255, 255, 255, 0.2); 
-  color: #fff; 
-  font-size: 16px;
-  outline: none; 
+    padding: 15px; 
+    border: none;
+    border-radius: 25px; 
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: #fff; 
+    font-size: 16px;
+    outline: none; 
   }
   
   .checkbox-container {
@@ -79,7 +87,12 @@
     font-size: 18px;
   }
 
-  .btn,
+  .button-container {
+    width: 116%;
+
+  }
+
+  .log,
   .reg {
     background: rgba(61, 152, 209, 0.9); 
     border: none; 
@@ -93,17 +106,27 @@
     cursor: pointer; 
     transition: 0.3s ease; 
   }
+
+  .reg {
+    margin-left: 74px;
+  }
   
-  .btn:hover, 
+  .log:hover, 
   .reg:hover {
     background: rgba(36, 175, 191, 0.9); 
   }
 
-  
+  .login-link-container {
+    width: 105%;
+    text-align: center;
+    
+  }
+
   .login-link {
     color: #24afbf; 
     text-decoration: none; 
     transition: color 0.3s ease; 
+
   }
   
   .login-link:hover {
