@@ -32,12 +32,6 @@
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Add a subtle shadow effect */
   }
 
-  .register-panel {
-    width: 100%;
-    max-width: 300px;
-    
-  }
-
   .input-container {
     margin-bottom: 20px;
   }
@@ -62,6 +56,8 @@
 
   h2  {
     text-align: center;
+    width: 110%;
+    margin-right: 20px;
   }
   
   .checkbox-container input[type="checkbox"] {

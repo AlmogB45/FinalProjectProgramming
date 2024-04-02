@@ -39,6 +39,10 @@ function Register() {
                             <input type="number" placeholder="Age" />
                         </div>
 
+                        <div className="input-container">
+                            <input type="text" placeholder="City"/>
+                        </div>
+
                         <div className="button-container">
                             <button className="btn" type="button">Sign-Up</button>
                         </div>
