@@ -1,0 +1,75 @@
+.user-container {
+    display: flex;
+    min-height: 100vh; 
+    align-items: center; 
+    justify-content: center; 
+    background-image: url('./assets/bg.png');
+    background-size: cover;
+    background-position: center; 
+  }
+
+  .profile-panel {
+    flex: 1;
+    background-color: rgba(10, 25, 49, 0.8); /* Adjust opacity for glass effect */
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    margin-left: 350px;
+    margin-right: 350px;
+    border-radius: 40px;
+  }
+
+  .buttons-profile {
+    flex: 1;
+    background-color: rgba(10, 25, 49, 0.8); 
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px); 
+    width: 500px; 
+    padding: 20px;
+    border-radius: 40px;
+  }
+
+  .profile img {
+    width: 200px; /* Adjust the width of the logo */
+    height: auto;
+    border-radius: 50%; /* Apply rounded corners to the logo */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Add a subtle shadow effect */
+  }
+
+  .profile {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .details,
+  .security,
+  .logout {
+    background: rgba(61, 152, 209, 0.9);
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 20px;
+    padding: 12px 40px; /* Increased width here */
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px auto;  /* Center buttons horizontally */
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .details:hover,
+  .security:hover,
+  .logout:hover {
+    background: rgba(36, 175, 191, 0.9); 
+  }
+
+
