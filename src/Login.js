@@ -6,8 +6,8 @@ function Login() {
   return (
     <div className="login-container">
     <div className="left-panel">
-      <div className="logo">
-      <img src= {logoImage} alt ="logo" />
+      <div className="logoLog">
+      <img src= {logoImage} alt ="logoLog" />
         <h1>LENDLOOP</h1>
       </div>
       <div className="sign-in-panel">
@@ -19,15 +19,20 @@ function Login() {
         <div className="input-container">
           <input type="password" placeholder="Password" />
         </div>
+
+        <div className='login-link-container'>
+<           a href="#" className="login-link">Can't login? Click here!</a>  
+        </div>
+
+        <div className="separatorLogin"></div>
+
         <div className="button-container">
   <button className="log" type="submit">Sign In</button>
   <button className="reg" type="button">Register</button>
 
 </div>
 
-<div className='login-link-container'>
-<a href="#" className="login-link">Can't login? Click here!</a>  
-</div>
+
       </form>
     </div>
     </div>

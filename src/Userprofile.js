@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import profileImage from "./assets/userpic.png";
 import  './Userprofile.css';
 
@@ -10,7 +10,9 @@ function Profile() {
                 <div className="profile">
                     <img src={profileImage} alt="user" />
                     <h1>User, 23</h1>
-                    <hr></hr>
+
+                    <div className="separatorProfile"></div>
+                    
                 </div>
 
                     <form>
