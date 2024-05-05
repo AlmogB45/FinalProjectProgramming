@@ -11,7 +11,7 @@ function Login() {
         <h1>LENDLOOP</h1>
       </div>
       <div className="sign-in-panel">
-        <h2>Sign in to dashboard</h2>
+        <h3>Sign in to dashboard</h3>
       <form>
         <div className="input-container">
           <input type="text" placeholder="Username / Email" />
@@ -26,16 +26,16 @@ function Login() {
 
         <div className="separatorLogin"></div>
 
-        <div className="button-container">
-  <button className="log" type="submit">Sign In</button>
-  <button className="reg" type="button">Register</button>
-
-</div>
-
-
       </form>
     </div>
+
+    <div className="button-container">
+      <button className="log" type="submit">Sign In</button>
+      <button className="reg" type="button">Register</button>
     </div>
+
+    </div>
+    
     <div className="right-panel">
     <h2>Join Our Community</h2>
         <p>LENDLOOP offers an innovative experience in the field of item lending. Made for users of all kinds, with no need to possess a social network account. LENDLOOP offers an ease-of-use not seen before with it's intuitive yet simple layout and plenty of quality of life features not seen in other websites!</p>

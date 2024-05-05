@@ -43,12 +43,13 @@ function Register() {
                             <input type="Date" placeholder="Age" />
                         </div>
 
-
-                        <div className="button-containerReg">
-                            <button className="SignUp" type="button">Sign-Up</button>
-                        </div>
                     </form>
                 </div>
+
+                <div className="button-containerReg">
+                    <button className="SignUp" type="button">Sign-Up</button>
+                </div>
+
             </div>
         </div>
     );

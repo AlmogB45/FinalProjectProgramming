@@ -22,8 +22,8 @@
   .logoLog {
     text-align: center;
     margin-bottom: 20px;
-    margin-left: 25px ;
-    width: 105%;
+    width: 100%;
+    justify-content: center;
   }
 
   .logoLog img {
@@ -38,10 +38,17 @@
   .community-panel {
     width: 100%;
     max-width: 300px;
+    justify-content: center;
   }
 
   h2 {
     text-align: center;
+    justify-content: center;
+  }
+
+  h3 {
+    text-align: center;
+    justify-content: center;
   }
   
   .sign-in-panel h2 {
@@ -54,7 +61,7 @@
     margin-bottom: 20px;
     display: flex; 
     align-items: center;
-    width: 110%;
+    width: 100%;
   }
   
   .input-container input {
@@ -94,7 +101,7 @@
 
   .button-container {
     width: 116%;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
   }
 
@@ -108,7 +115,6 @@
     padding: 12px 24px; 
     text-decoration: none;
     display: inline-block; 
-    margin-right: 20px; 
     cursor: pointer; 
     transition: 0.3s ease; 
   }
@@ -123,8 +129,9 @@
   }
 
   .login-link-container {
-    width: 105%;
+    width: 100%;
     text-align: center;
+    justify-content: center;
     
   }
 
