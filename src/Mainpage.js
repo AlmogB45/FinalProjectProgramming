@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 function Mainpage() {
     return (
       <div className="main-container">
+        <Navbar/>
         <div className="panel">
           <div className="logoMain">
             <img src={logoImage} alt ="logoMain" />
