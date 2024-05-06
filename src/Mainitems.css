@@ -1,4 +1,4 @@
-  .item-button
+  .item-buttonMain
   {
     width: 200px; 
     height: 200px; 
@@ -11,7 +11,7 @@
     margin: 10px;
   }
 
-  .item-button {
+  .item-buttonMain {
     background-image: url('');
   }
 

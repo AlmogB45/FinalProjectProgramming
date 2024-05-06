@@ -1,0 +1,67 @@
+.logoSub {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 5%;
+  }
+
+  .logoSub img {
+    width: 200px; 
+    height: auto;
+    border-radius: 50%; 
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); 
+    margin-bottom: 40px;
+  }
+
+  .separatorSub {
+    border: none;
+    background-color: #808080;
+    width: 80%;  
+    height: 1px;
+    margin: 10px 0;  
+  }
+
+  .sub-container {
+    display: flex;
+    min-height: 100vh; 
+    align-items: center; 
+    justify-content: center; 
+    background-image: url('./assets/bg.png');
+    background-size: cover;
+    background-position: center; 
+  }
+
+  .panel {
+    flex: 1;
+    background-color: rgba(10, 25, 49, 0.8); /* Adjust opacity for glass effect */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px); /* Apply blur effect for glass-like appearance */
+}
+
+#subTitle  {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+
+  .input-containerSub {
+    margin-bottom: 20px;
+    display: flex; 
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .input-containerSub input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+  }

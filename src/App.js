@@ -4,6 +4,7 @@ import Login from './Login';
 import Register from './Register';
 import Mainpage from './Mainpage';
 import Profile from './Userprofile';
+import Subpage from "./Subpage";
 
 function App() {
   return (
@@ -11,10 +12,11 @@ function App() {
       
       <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/mainpage" element={<Mainpage />} />
+        <Route path="/subpage" element={<Subpage />} />
       </Routes>
     </BrowserRouter>
     </div>
