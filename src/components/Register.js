@@ -1,6 +1,6 @@
 import React from 'react';
-import './Register.css';
-import logoImage from "./assets/LOGO1.png";
+import '../CSS/Register.css';
+import logoImage from "../assets/LOGO1.png";
 
 function Register() {
     return (

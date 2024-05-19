@@ -1,8 +1,8 @@
 import React from 'react';
-import './Mainpage.css';
-import logoImage from './assets/LOGO1.png';
-import Mainitems from './Mainitems';
-import Navbar from './Navbar';
+import '../CSS/Mainpage.css';
+import logoImage from '../assets/LOGO1.png';
+import Mainitems from '../components/Mainitems';
+import Navbar from '../components/Navbar';
 
 function Mainpage() {
     return (

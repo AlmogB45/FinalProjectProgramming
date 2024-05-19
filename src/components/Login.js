@@ -1,6 +1,9 @@
 import React from 'react';
-import './Login.css';
-import logoImage from "./assets/LOGO1.png";
+import { Link } from 'react-router-dom';
+import '../CSS/Login.css';
+import logoImage from "../assets/LOGO1.png";
+import Register from './Register';
+
 
 function Login() {
   return (
@@ -20,10 +23,11 @@ function Login() {
           <input type="password" placeholder="Password" />
         </div>
 
-        <div className='login-link-container'>
+        {/* Change to <Link> tag */}
+        <div className='login-link-container'>  
 <           a href="#" className="login-link">Can't login? Click here!</a>  
         </div>
-
+        {/* End */}
         <div className="separatorLogin"></div>
 
       </form>
@@ -31,7 +35,9 @@ function Login() {
 
     <div className="button-container">
       <button className="log" type="submit">Sign In</button>
-      <button className="reg" type="button">Register</button>
+      <Link to="/register" className="reg-button">
+                Register
+      </Link>
     </div>
 
     </div>

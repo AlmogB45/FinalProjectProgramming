@@ -1,7 +1,7 @@
 .login-container {
   position: relative;
     display: flex;
-    background-image: url('./assets/bg.png');
+    background-image: url('../assets/bg.png');
     background-size: cover;
 }
   
@@ -106,7 +106,7 @@
   }
 
   .log,
-  .reg {
+  .reg-button {
     background: rgba(61, 152, 209, 0.9); 
     border: none; 
     border-radius: 25px; 
@@ -119,7 +119,7 @@
     transition: 0.3s ease; 
   }
 
-  .reg {
+  .reg-button {
     margin-left: 74px;
   }
   

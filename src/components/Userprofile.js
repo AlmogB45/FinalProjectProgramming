@@ -1,11 +1,13 @@
 import React, { useState} from "react";
-import profileImage from "./assets/userpic.png";
-import  './Userprofile.css';
+import Navbar from '../components/Navbar';
+import profileImage from "../assets/userpic.png";
+import  '../CSS/Userprofile.css';
 
 
 function Profile() {
     return (
     <div className="user-container">
+        <Navbar/>
             <div className="profile-panel">
                 <div className="profile">
                     <img src={profileImage} alt="user" />

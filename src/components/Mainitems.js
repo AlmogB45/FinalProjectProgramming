@@ -1,5 +1,5 @@
 import React from "react";
-import './Mainitems.css';
+import '../CSS/Mainitems.css';
 
 function Mainitems() {
     return (

@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from './Navbar';
-import logoImage from './assets/LOGO1.png';
-import Subitems from "./Subitems";
-import './Subpage.css'
+import Navbar from '../components/Navbar';
+import logoImage from '../assets/LOGO1.png';
+import Subitems from "../components/Subitems";
+import '../CSS/Subpage.css'
 
 function Subpage() {
     return (

@@ -1,6 +1,6 @@
 import React from "react";
-import './Subitems.css';
-import logoImage from "./assets/LOGO1.png";
+import '../CSS/Subitems.css';
+import logoImage from "../assets/LOGO1.png";
 
 function Subitems() {
   return (
