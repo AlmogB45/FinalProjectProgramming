@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../CSS/Register.css';
+import CityAPI from './CityAPI';
 import logoImage from "../assets/LOGO1.png";
 
 function Register() {
+    // Add function to fetchCityAPI 
+    //TODO: Check CityAPI
+
+    
     return (
         <div className="register-container">
             <div className="panel">
@@ -36,13 +41,15 @@ function Register() {
                         </div>
 
                         <div className="input-containerReg">
-                            <input type="text" placeholder="City"/>
-                        </div>
-
-                        <div className="input-containerReg">
                             <input type="Date" placeholder="Age" />
                         </div>
-
+                        
+                        {/* Fix the input below!! */}
+                        <div className="input-containerReg">
+                        <select>
+                            <option value="">Select City</option>                             
+                        </select>
+                        </div>
                     </form>
                 </div>
 

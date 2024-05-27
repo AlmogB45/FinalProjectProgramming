@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/Login.css';
 import logoImage from "../assets/LOGO1.png";
-import Register from './Register';
 
 
 function Login() {
