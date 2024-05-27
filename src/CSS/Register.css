@@ -33,14 +33,12 @@
     margin-bottom: 40px;
   }
 
-  .input-containerReg {
-    margin-bottom: 20px;
+  .form-control {
+    width: 200%;;
+    margin-top: 25px;
     display: flex; 
     align-items: center;
     justify-content: center;
-  }
-
-  .input-containerReg input {
     flex: 1;
     padding: 15px; 
     border: none;
@@ -48,7 +46,7 @@
     background-color: rgba(255, 255, 255, 0.2); 
     color: #fff; 
     font-size: 16px;
-    outline: none; 
+    outline: none;
   }
 
   .checkbox-container {
@@ -68,17 +66,23 @@
   }
 
   .InfoPromptReg {
+    width: 200%;
     margin: 1 auto;
+    width: 200;
+    justify-content: center;
     text-align: center;
     margin-bottom: 10px;
+    margin-top: 20px;
   }
 
   .SignUp {
+    width: 200%;
     background: rgba(61, 152, 209, 0.9); 
     border: none; 
     border-radius: 25px; 
     color: #fff;
     font-size: 20px;
+    margin-top: 20px;
     padding: 12px 24px; 
     text-decoration: none;
     display: inline-block; 
@@ -93,11 +97,16 @@
   .separatorRegister {
     border: none;
     background-color: #808080;
-    width: 100%;  /* Adjust width as needed */
+    width: 200%;  /* Adjust width as needed */
     height: 1px;
     margin: 10px 0;  
   }
   
   
- 
-  
+ .separator1 {
+  border: none;
+  background-color: #808080;
+  width: 100%;  /* Adjust width as needed */
+  height: 1px;
+  margin: 10px 0;  
+ }
