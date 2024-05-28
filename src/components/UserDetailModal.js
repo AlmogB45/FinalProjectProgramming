@@ -39,7 +39,7 @@ const UserDetailModal = ({ show, handleClose }) => {
                 <label htmlFor="formName" className="form-label">First Name</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control modal-form-control"
                   id="formName"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -50,7 +50,7 @@ const UserDetailModal = ({ show, handleClose }) => {
                 <label htmlFor="formLastName" className="form-label">Last Name</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control modal-form-control"
                   id="formLastName"
                   value={lastname}
                   onChange={(e) => setLastName(e.target.value)}
@@ -61,7 +61,7 @@ const UserDetailModal = ({ show, handleClose }) => {
                 <label htmlFor="formAge" className="form-label">Age</label>
                 <input
                   type="number"
-                  className="form-control"
+                  className="form-control modal-form-control"
                   id="formAge"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}

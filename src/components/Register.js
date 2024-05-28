@@ -29,7 +29,7 @@ export default function Register() {
                         className='form-control' />
                         {errors.user && <div className='text-danger'>* Enter a valid username (min 2 characters)</div>}
 
-                        <input {...register("email",{required:true, pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z] {2,}$/i})} type='text' placeholder='Email'
+                        <input {...register("email",{required:true, pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})} type='text' placeholder='Email'
                         className='form-control' />
                         {errors.email && <div className='text-danger'>* Enter a valid email address</div>}
 
@@ -63,35 +63,4 @@ export default function Register() {
 
 
 
-                        {/* Add Input field for City (either select or autofill) */}
-
-
-                        {/* <div className="input-containerReg">
-                            <input type="text" placeholder="Username" />
-                        </div>
-
-                        <div className="input-containerReg">
-                            <input type="email" placeholder="Email" />
-                        </div>
-
-                        <div className="input-containerReg">
-                            <input type="password" placeholder="Password" />
-                        </div> */}
-
                         
-
-                        {/* <div className="input-containerReg">
-                            <input type="tel" placeholder="Phone Number" />
-                        </div>
-
-                        <div className="input-containerReg">
-                            <input type="Date" placeholder="Age" />
-                        </div> */}
-                        
-                        {/* Fix the input below!! */}
-                        {/* <div className="input-containerReg">
-                        <select>
-                            <option value="">Select City</option>                             
-                        </select>
-                        </div> */}
-                   

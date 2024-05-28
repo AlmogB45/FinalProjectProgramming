@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../CSS/UserprofileModal.css';
 
 const UserSecurityModal = ({ show, handleClose }) => {
   const [email, setEmail] = useState('');
@@ -40,7 +41,7 @@ const UserSecurityModal = ({ show, handleClose }) => {
                 <label htmlFor="formEmail" className="form-label">Email</label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control modal-form-control"
                   id="formEmail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -51,7 +52,7 @@ const UserSecurityModal = ({ show, handleClose }) => {
                 <label htmlFor="formPassword" className="form-label">Password</label>
                 <input
                   type="password"
-                  className="form-control"
+                  className="form-control modal-form-control"
                   id="formPassword"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -62,7 +63,7 @@ const UserSecurityModal = ({ show, handleClose }) => {
                 <label htmlFor="formLocation" className="form-label">Location</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control modal-form-control"
                   id="formLocation"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
@@ -73,7 +74,7 @@ const UserSecurityModal = ({ show, handleClose }) => {
                 <label htmlFor="formPhoneNumber" className="form-label">Phone Number</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control modal-form-control"
                   id="formPhoneNumber"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
