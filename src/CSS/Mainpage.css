@@ -25,6 +25,7 @@
     min-height: 100vh; 
     align-items: center; 
     justify-content: center; 
+    text-align: center;
     background-image: url('../assets/bg.png');
     background-size: cover;
     background-position: center; 
@@ -36,6 +37,7 @@
     color: #fff;
     display: flex;
     flex-direction: column;
+    align-items: center;
     backdrop-filter: blur(10px); /* Apply blur effect for glass-like appearance */
 }
 
@@ -64,4 +66,10 @@
     color: #fff;
     font-size: 16px;
     outline: none;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
