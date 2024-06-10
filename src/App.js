@@ -6,7 +6,6 @@ import Mainpage from './components/Mainpage';
 import Profile from './components/Userprofile';
 import Subpage from './components/Subpage';
 import Itempage from './components/Itempage';
-import CityAPI from "./components/CityAPI";
 
 function App() {
   return (
@@ -18,6 +17,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/mainpage" element={<Mainpage />} />
         <Route path="/subpage" element={<Subpage />} />
+        <Route path="/category/:categoryId" element={<Subpage />} />
         <Route path="/item" element={<Itempage />} />
       </Routes>
     </BrowserRouter>

@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
+import { useNavigate } from 'react-router-dom';
 import '../CSS/Mainitems.css';
 import {db} from '../Firebase/config';
 import { collection, getDocs } from 'firebase/firestore'
 import { useCollection } from "../Hooks/UseCollection";
 
-//TODO Change collection name in Firebase to "items"
-
 export default function Mainitems() {
   const [ categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   useEffect (() => {
     const fetchCategories = async () => {
@@ -34,9 +34,10 @@ export default function Mainitems() {
   };
 
   const handleButtonClick = (categoryId) => {
+    navigate(`/category/${categoryId}`);
     console.log("Button clicked for category:", categoryId);
-
   };
+
     return (
       <div className="col-md-3">
     {categories.map(category => (
