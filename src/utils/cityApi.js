@@ -13,7 +13,10 @@ export default async function fetchCities() {
         hebrewName: record[HEBREW_NAME_KEY],
         englishName: record[ENGLISH_NAME_KEY]
       }));
-      return cityRecords;
+
+      const sortedCityRecords = cityRecords.sort((a,b) => a.englishName.localeCompare(b.englishName)).filter(city => city.englishName.trim())
+      return sortedCityRecords;
+      
     } catch (error) {
       console.error('Error fetching data:', error);
       throw error;

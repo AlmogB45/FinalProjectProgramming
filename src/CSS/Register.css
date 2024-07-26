@@ -79,6 +79,10 @@
   .CityReg {
     width: 200%;
   }
+
+  /* .city-option {
+    text-align: end;
+  } */
   
   .checkbox-container input[type="checkbox"] {
     justify-content: center;

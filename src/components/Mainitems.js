@@ -1,25 +1,39 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Mainitems.css';
-import {db} from '../Firebase/config';
+import {db, auth} from '../Firebase/config';
 import { collection, getDocs } from 'firebase/firestore'
 import { useCollection } from "../Hooks/UseCollection";
 
 export default function Mainitems() {
   const [ categories, setCategories] = useState([]);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect (() => {
-    const fetchCategories = async () => {
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        fetchCategories();
+      } else {
+        navigate('/');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+
+  const fetchCategories = async () => {
+    try {
       const ref = collection(db, 'Categories');
       const snapshot = await getDocs(ref);
-      const categoriesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
+      const categoriesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       const uniqueCategories = filterUniqueCategories(categoriesData);
       setCategories(uniqueCategories);
-    };
-
-    fetchCategories();
-  }, []);
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+      setError("Failed to load categories. Please try again later.");
+    }
+  };
 
   const filterUniqueCategories = (categoriesData) => {
     const uniqueCategories = [];
@@ -37,6 +51,39 @@ export default function Mainitems() {
     navigate(`/category/${categoryId}`);
     console.log("Button clicked for category:", categoryId);
   };
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
+
+  // useEffect (() => {
+  //   const fetchCategories = async () => {
+  //     const ref = collection(db, 'Categories');
+  //     const snapshot = await getDocs(ref);
+  //     const categoriesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
+  //     const uniqueCategories = filterUniqueCategories(categoriesData);
+  //     setCategories(uniqueCategories);
+  //   };
+
+  //   fetchCategories();
+  // }, []);
+
+  // const filterUniqueCategories = (categoriesData) => {
+  //   const uniqueCategories = [];
+  //   const categoryTitles = new Set();
+  //   categoriesData.forEach(category => {
+  //     if (!categoryTitles.has(category.title)) {
+  //       uniqueCategories.push(category);
+  //       categoryTitles.add(category.title);
+  //     }
+  //   });
+  //   return uniqueCategories;
+  // };
+
+  // const handleButtonClick = (categoryId) => {
+  //   navigate(`/category/${categoryId}`);
+  //   console.log("Button clicked for category:", categoryId);
+  // };
 
     return (
       <div className="col-md-3">

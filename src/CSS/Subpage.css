@@ -1,67 +1,188 @@
 .logoSub {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 5%;
-  }
-
-  .logoSub img {
-    width: 200px; 
-    height: auto;
-    border-radius: 50%; 
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); 
-    margin-bottom: 40px;
-  }
-
-  .separatorSub {
-    border: none;
-    background-color: #808080;
-    width: 80%;  
-    height: 1px;
-    margin: 10px 0;  
-  }
-
-  .sub-container {
-    display: flex;
-    min-height: 100vh; 
-    align-items: center; 
-    justify-content: center; 
-    background-image: url('../assets/bg.png');
-    background-size: cover;
-    background-position: center; 
-  }
-
-  .panel {
-    flex: 1;
-    background-color: rgba(10, 25, 49, 0.8); /* Adjust opacity for glass effect */
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    backdrop-filter: blur(10px); /* Apply blur effect for glass-like appearance */
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 5%;
 }
 
-#subTitle  {
-    text-align: center;
-    width: 100%;
-    margin-bottom: 20px;
-  }
+.logoSub img {
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  margin-bottom: 40px;
+}
+
+.separatorSub {
+  border: none;
+  background-color: #808080;
+  width: 80%;
+  height: 1px;
+  margin: 10px 0;
+}
+
+.sub-container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: url('../assets/bg.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.panel {
+  flex: 1;
+  background-color: rgba(10, 25, 49, 0.8);
+  /* Adjust opacity for glass effect */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  /* Apply blur effect for glass-like appearance */
+}
+
+#subTitle {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
 
 
-  .input-containerSub {
-    margin-bottom: 20px;
-    display: flex; 
-    align-items: center;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.input-containerSub {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  .input-containerSub input {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.2); 
-    color: #fff;
-    font-size: 16px;
-    outline: none;
-  }
+.input-containerSub input {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+.row-sub {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -10px;
+}
+
+.col-md-3 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  justify-items: center;
+}
+
+.card {
+  width: 250px;
+  height: 250px;
+  border-radius: 10%;
+  background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+  color: black;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  display: block;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(204, 204, 204, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  color: black;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-body {
+  opacity: 1;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  /* Adjust this number to show more or fewer lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorite-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  position: relative;
+}
+
+.favorite-btn::before,
+.favorite-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 15px;
+  height: 25px;
+  border-radius: 15px 15px 0 0;
+  background: red;
+}
+
+.favorite-btn::before {
+  left: 15px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.favorite-btn::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+}

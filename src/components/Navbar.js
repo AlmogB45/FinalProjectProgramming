@@ -17,6 +17,11 @@ const Navbar = () => {
           <Link to="/profile" className="navbar-link">
                 Profile
           </Link>
+
+          <Link to="/publish-item" className="navbar-link">
+                Publish Item
+          </Link>
+
         </ul>
         <div className="navbar-search">
           <input type="text" placeholder="Search" />

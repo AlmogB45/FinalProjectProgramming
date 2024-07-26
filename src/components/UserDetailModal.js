@@ -1,16 +1,51 @@
 import React, { useState, useEffect } from 'react';
+import { auth, db } from '../Firebase/config';
+import { doc, updateDoc } from 'firebase/firestore';
 
-const UserDetailModal = ({ show, handleClose }) => {
+const UserDetailModal = ({ show, handleClose, userData }) => {
   const [name, setName] = useState('');
-  const [lastname, setLastName] = useState('');
   const [age, setAge] = useState('');
+  const [city, setCity] = useState('');
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (userData) {
+      setName(userData.name || '');
+      setAge(userData.age || '');
+      setCity(userData.city || '');
+    }
+  }, [userData]);
+
+  useEffect(() => {
+    const modalElement = document.getElementById('userDetailModal');
+    if (show) {
+      modalElement.classList.add('show');
+      modalElement.style.display = 'block';
+      document.body.classList.add('modal-open');
+    } else {
+      modalElement.classList.remove('show');
+      modalElement.style.display = 'none';
+      document.body.classList.remove('modal-open');
+    }
+  }, [show]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Name:', name, 'Last Name:', lastname, 'Age:', age);
-    handleClose(); // Close the modal after submission
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        await updateDoc(doc(db, 'Users', user.uid), {
+          name: name,
+          age: age,
+          city: city
+        });
+        console.log('User details updated successfully');
+      }
+    } catch (error) {
+      console.error('Error updating user details:', error);
+    }
+    handleClose();
   };
+
 
   useEffect(() => {
     const modalElement = document.getElementById('userDetailModal');
@@ -35,41 +70,21 @@ const UserDetailModal = ({ show, handleClose }) => {
           </div>
           <div className="modal-body">
             <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label htmlFor="formName" className="form-label">First Name</label>
-                <input
-                  type="text"
-                  className="form-control modal-form-control"
-                  id="formName"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter First Name"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="formLastName" className="form-label">Last Name</label>
-                <input
-                  type="text"
-                  className="form-control modal-form-control"
-                  id="formLastName"
-                  value={lastname}
-                  onChange={(e) => setLastName(e.target.value)}
-                  placeholder="Enter Last Name"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="formAge" className="form-label">Age</label>
-                <input
-                  type="number"
-                  className="form-control modal-form-control"
-                  id="formAge"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  placeholder="Enter Age"
-                />
-              </div>
-              <button type="submit" className="btn btn-primary">Save Changes</button>
+              <label>
+                Name:
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+              </label>
+              <label>
+                Age:
+                <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+              </label>
+              <label>
+                City:
+                <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
+              </label>
+              <button type="submit">Save Changes</button>
             </form>
+            <button onClick={handleClose}>Close</button>
           </div>
         </div>
       </div>

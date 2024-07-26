@@ -6,6 +6,7 @@ import Mainpage from './components/Mainpage';
 import Profile from './components/Userprofile';
 import Subpage from './components/Subpage';
 import Itempage from './components/Itempage';
+import PublishItem from "./components/PublishItems";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Route path="/mainpage" element={<Mainpage />} />
         <Route path="/subpage" element={<Subpage />} />
         <Route path="/category/:categoryId" element={<Subpage />} />
-        <Route path="/item" element={<Itempage />} />
+        <Route path="/item/:itemId" element={<Itempage />} />
+        <Route path="/publish-item" element={<PublishItem />} />
       </Routes>
     </BrowserRouter>
     </div>

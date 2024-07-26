@@ -100,16 +100,33 @@
   }
 
   .button-container {
-    width: 116%;
+    width: 110%;
     justify-content: center;
+    align-items: center;
     display: flex;
   }
 
+  .remember-me-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .remember-me-container label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .remember-me-container input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
   .log,
   .reg-button {
     background: rgba(61, 152, 209, 0.9); 
     border: none; 
-    border-radius: 25px; 
+    border-radius: 25px;
     color: #fff;
     font-size: 20px;
     padding: 12px 24px; 
@@ -120,7 +137,8 @@
   }
 
   .reg-button {
-    margin-left: 74px;
+    margin: 40px;
+    
   }
   
   .log:hover, 
