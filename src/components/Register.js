@@ -81,14 +81,14 @@ export default function Register() {
                 <div className="register-panel">
                     <h2>New user? Sign-up below!</h2>
                     <form className='col-md-6' onSubmit={handleSubmit(onSubmit)}>
-                        <input {...register("user", { required: true, minLength: 2 })} type='text' placeholder='Username'
+                        <input {...register("user", { required: true, minLength: 2 })} type='reg-text' placeholder='Username'
                             className='form-control' onChange={(e) => {
                                 handleInputChange(e);
                                 register("user").onChange(e);
                               }} />
                         {errors.user && <div className='text-danger'>* Enter a valid username (min 2 characters)</div>}
 
-                        <input {...register("email", { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })} type='text' placeholder='Email'
+                        <input {...register("email", { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })} type='reg-text' placeholder='Email'
                             className='form-control' onChange={(e) => {
                                 handleInputChange(e);
                                 register("email").onChange(e);
@@ -108,14 +108,14 @@ export default function Register() {
 
                         <div className="separatorRegister"></div>
 
-                        <input {...register("phone", { required: true, minLength: 9 })} type='text' placeholder='Phone'
+                        <input {...register("phone", { required: true, minLength: 9 })} type='reg-text' placeholder='Phone'
                             className='form-control'  onChange={(e) => {
                                 handleInputChange(e);
                                 register("phone").onChange(e);
                               }} />
 
                         {errors.phone && <div className='text-danger'>* Enter a valid number</div>}
-                        <input {...register("age", { required: true })} type='age' placeholder='Age'
+                        <input {...register("age", { required: true })} type='reg-age' placeholder='Age'
                             className='form-control' onChange={(e) => {
                                 handleInputChange(e);
                                 register("age").onChange(e);
@@ -142,7 +142,6 @@ export default function Register() {
             </div>
         </div>
     );
-
 }
 
 

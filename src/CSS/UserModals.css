@@ -1,0 +1,130 @@
+.user-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.user-modal.show {
+  opacity: 1;
+  visibility: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.user-modal.show .user-modal-content {
+  transform: scale(1);
+}
+
+.user-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.user-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.user-modal-close:hover {
+  color: #333;
+}
+
+.user-modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-modal-form label {
+  margin-bottom: 16px;
+}
+
+.user-modal-form input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.user-modal-form input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.user-modal-submit {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-modal-submit:hover {
+  background-color: #2980b9;
+}
+
+/* Specific styles for UserDetailModal */
+#userDetailModal .user-modal-content {
+  background-color: #f0f8ff;
+  /* Light blue background */
+}
+
+#userDetailModal .user-modal-title {
+  color: #2c3e50;
+}
+
+/* Specific styles for UserSecurityModal */
+#userSecurityModal .user-modal-content {
+  background-color: #fff5f5;
+  /* Light red background */
+}
+
+#userSecurityModal .user-modal-title {
+  color: #c0392b;
+}
+
+#userSecurityModal .user-modal-submit {
+  background-color: #e74c3c;
+}
+
+#userSecurityModal .user-modal-submit:hover {
+  background-color: #c0392b;
+}

@@ -11,17 +11,21 @@ const Navbar = () => {
         </div>
         <ul className="navbar-menu">
           <Link to="/mainpage" className="navbar-link">
-                Home
+            Home
           </Link>
 
           <Link to="/profile" className="navbar-link">
-                Profile
+            Profile
           </Link>
 
           <Link to="/publish-item" className="navbar-link">
-                Publish Item
+            Publish Item
           </Link>
 
+          <Link to="/favorites" className="navbar-link">
+            Favorites
+          </Link>
+          
         </ul>
         <div className="navbar-search">
           <input type="text" placeholder="Search" />

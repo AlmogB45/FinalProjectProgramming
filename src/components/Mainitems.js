@@ -56,37 +56,8 @@ export default function Mainitems() {
     return <div className="error">{error}</div>;
   }
 
-  // useEffect (() => {
-  //   const fetchCategories = async () => {
-  //     const ref = collection(db, 'Categories');
-  //     const snapshot = await getDocs(ref);
-  //     const categoriesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
-  //     const uniqueCategories = filterUniqueCategories(categoriesData);
-  //     setCategories(uniqueCategories);
-  //   };
-
-  //   fetchCategories();
-  // }, []);
-
-  // const filterUniqueCategories = (categoriesData) => {
-  //   const uniqueCategories = [];
-  //   const categoryTitles = new Set();
-  //   categoriesData.forEach(category => {
-  //     if (!categoryTitles.has(category.title)) {
-  //       uniqueCategories.push(category);
-  //       categoryTitles.add(category.title);
-  //     }
-  //   });
-  //   return uniqueCategories;
-  // };
-
-  // const handleButtonClick = (categoryId) => {
-  //   navigate(`/category/${categoryId}`);
-  //   console.log("Button clicked for category:", categoryId);
-  // };
-
     return (
-      <div className="col-md-3">
+      <div className="main-col-md-3">
     {categories.map(category => (
         <div key={category.id}>
             <button

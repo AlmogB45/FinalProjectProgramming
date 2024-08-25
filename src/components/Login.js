@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence, browserLocalPersistence } from 'firebase/auth';
+import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence, browserLocalPersistence, sendPasswordResetEmail } from 'firebase/auth';
 import { auth, db } from '../Firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import '../CSS/Login.css';
@@ -10,9 +10,11 @@ import logoImage from "../assets/LOGO1.png";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const [loginError, setLoginError] = useState(null);
   const [rememberMe, setRememberMe] = useState(false);
+
+  const email = watch('email');
 
   const onLogin = async (data) => {
     console.log("Attempting login with:", data.email);
@@ -42,6 +44,22 @@ export default function Login() {
     } catch (error) {
       console.log("Login error:", error.code, error.message);
       setLoginError("Invalid email or password. Please try again.");
+    }
+  };
+
+  const handlePasswordReset = async (e) => {
+    e.preventDefault();
+    if (!email) {
+      alert("Please fill in your email address in the appropriate field first.");
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Password reset email sent. Please check your inbox.");
+      setLoginError(null);
+    } catch (error) {
+      console.error("Password reset error:", error);
+      alert("Failed to send password reset email. Please try again.");
     }
   };
 
@@ -87,7 +105,7 @@ export default function Login() {
 
             {/* Change to <Link> tag */}
             <div className='login-link-container'>
-              <a href="#" className="login-link">Can't login? Click here!</a>
+            <a href="#" className="login-link" onClick={handlePasswordReset}>Can't login? Click here!</a>
             </div>
             {/* End */}
             <div className="separatorLogin"></div>

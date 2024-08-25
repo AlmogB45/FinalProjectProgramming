@@ -1,13 +1,13 @@
 .panel {
     flex: 1;
-    background-color: rgba(10, 25, 49, 0.8); /* Adjust opacity for glass effect */
+    background-color: rgba(10, 25, 49, 0.8); 
     color: #fff;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(10px); /* Apply blur effect for glass-like appearance */
+    backdrop-filter: blur(10px); 
 }
 
 .register-container {
@@ -61,6 +61,10 @@
     margin-bottom: 20px;
   }
 
+  .reg-text {
+    justify-content: center;
+  }
+
   #CityTitle {
     margin-top: 20px;
     text-align: center;
@@ -79,10 +83,6 @@
   .CityReg {
     width: 200%;
   }
-
-  /* .city-option {
-    text-align: end;
-  } */
   
   .checkbox-container input[type="checkbox"] {
     justify-content: center;
@@ -120,7 +120,7 @@
   .separatorRegister {
     border: none;
     background-color: #808080;
-    width: 200%;  /* Adjust width as needed */
+    width: 200%;  
     height: 1px;
     margin: 10px 0;  
   }
@@ -129,7 +129,7 @@
  .separator1 {
   border: none;
   background-color: #808080;
-  width: 100%;  /* Adjust width as needed */
+  width: 100%;  
   height: 1px;
   margin: 10px 0;  
  }

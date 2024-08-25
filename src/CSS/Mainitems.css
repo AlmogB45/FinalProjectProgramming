@@ -23,9 +23,10 @@
   list-style-type: none; /* Remove the dot from the list item */
 }
 
-.col-md-3 {
+.main-col-md-3 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   justify-items: center;
+  justify-content: center;
 }

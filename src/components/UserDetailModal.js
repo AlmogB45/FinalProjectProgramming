@@ -1,35 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { auth, db } from '../Firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
+import fetchCities from '../utils/cityApi';
+import '../CSS/UserModals.css';
 
 const UserDetailModal = ({ show, handleClose, userData }) => {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [city, setCity] = useState('');
+  const [citiesList, setCitiesList] = useState([]);
+
+
 
   useEffect(() => {
     if (userData) {
       setName(userData.name || '');
       setAge(userData.age || '');
       setCity(userData.city || '');
+
     }
   }, [userData]);
 
-  useEffect(() => {
-    const modalElement = document.getElementById('userDetailModal');
-    if (show) {
-      modalElement.classList.add('show');
-      modalElement.style.display = 'block';
-      document.body.classList.add('modal-open');
-    } else {
-      modalElement.classList.remove('show');
-      modalElement.style.display = 'none';
-      document.body.classList.remove('modal-open');
-    }
-  }, [show]);
+  // useEffect(() => {
+  //   const modalElement = document.getElementById('userDetailModal');
+  //   if (show) {
+  //     modalElement.classList.add('show');
+  //     modalElement.style.display = 'block';
+  //     document.body.classList.add('modal-open');
+  //   } else {
+  //     modalElement.classList.remove('show');
+  //     modalElement.style.display = 'none';
+  //     document.body.classList.remove('modal-open');
+  //   }
+  // }, [show]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       const user = auth.currentUser;
       if (user) {
@@ -46,6 +52,18 @@ const UserDetailModal = ({ show, handleClose, userData }) => {
     handleClose();
   };
 
+  useEffect(() => {
+    const fetchCitiesData = async () => {
+      try {
+        const cities = await fetchCities();
+        setCitiesList(cities);
+      } catch (error) {
+        console.error('Error fetching cities:', error);
+      }
+    };
+
+    fetchCitiesData();
+  }, []);
 
   useEffect(() => {
     const modalElement = document.getElementById('userDetailModal');
@@ -61,32 +79,34 @@ const UserDetailModal = ({ show, handleClose, userData }) => {
   }, [show]);
 
   return (
-    <div className="modal fade" id="userDetailModal" tabIndex="-1" role="dialog">
-      <div className="modal-dialog" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Edit Personal Details</h5>
-            <button type="button" className="btn-close" onClick={handleClose}></button>
-          </div>
-          <div className="modal-body">
-            <form onSubmit={handleSubmit}>
-              <label>
-                Name:
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-              </label>
-              <label>
-                Age:
-                <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
-              </label>
-              <label>
-                City:
-                <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
-              </label>
-              <button type="submit">Save Changes</button>
-            </form>
-            <button onClick={handleClose}>Close</button>
-          </div>
+    <div className={`user-modal ${show ? 'show' : ''}`} id="userDetailModal">
+      <div className="user-modal-content">
+        <div className="user-modal-header">
+          <h5 className="user-modal-title">Edit Personal Details</h5>
+          <button className="user-modal-close" onClick={handleClose}>&times;</button>
         </div>
+        <form className="user-modal-form" onSubmit={handleSubmit}>
+          <label>
+            Name:
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          </label>
+          <label>
+            Age:
+            <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+          </label>
+          <label>
+            City:
+            <select value={city} onChange={(e) => setCity(e.target.value)}>
+              <option value="">Select a city</option>
+              {citiesList.map((cityItem) => (
+                <option key={cityItem.id} value={cityItem.englishName}>
+                  {cityItem.englishName}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button type="submit" className="user-modal-submit">Save Changes</button>
+        </form>
       </div>
     </div>
   );

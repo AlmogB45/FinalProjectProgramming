@@ -1,0 +1,170 @@
+.publish-item-container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/bg.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.publish-panel {
+  flex: 1;
+  background-color: rgba(10, 25, 49, 0.8);
+  color: #fff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  max-width: 600px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+h2 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.publish-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea,
+select,
+input[type="file"] {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #000000;
+  font-size: 16px;
+  outline: none;
+}
+
+#publishCheck {
+  width: 10%;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  max-height: 200px;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+input[type="file"] {
+  padding: 10px;
+}
+
+.publish-btn {
+  width: 100%;
+  background: rgba(61, 152, 209, 0.9);
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 12px 24px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.publish-btn:hover {
+  background: rgba(36, 175, 191, 0.9);
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  margin-top: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.separator {
+  border: none;
+  background-color: #808080;
+  width: 100%;
+  height: 1px;
+  margin: 20px 0;
+}
+
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.image-preview {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.image-preview button {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4136;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.image-preview button:hover {
+  background-color: rgba(255, 0, 0, 1);
+}
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 20px;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { auth, db } from '../Firebase/config';
 import { updateEmail, updatePassword } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
-import '../CSS/UserprofileModal.css';
+import '../CSS/UserModals.css';
 
 const UserSecurityModal = ({ show, handleClose, userData }) => {
   const [email, setEmail] = useState('');
@@ -16,19 +16,6 @@ const UserSecurityModal = ({ show, handleClose, userData }) => {
       setPhoneNumber(userData.phone || '');
     }
   }, [userData]);
-
-  useEffect(() => {
-    const modalElement = document.getElementById('userSecurityModal');
-    if (show) {
-      modalElement.classList.add('show');
-      modalElement.style.display = 'block';
-      document.body.classList.add('modal-open');
-    } else {
-      modalElement.classList.remove('show');
-      modalElement.style.display = 'none';
-      document.body.classList.remove('modal-open');
-    }
-  }, [show]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,15 +54,13 @@ const UserSecurityModal = ({ show, handleClose, userData }) => {
   }, [show]);
 
   return (
-    <div className="modal fade" id="userSecurityModal" tabIndex="-1" role="dialog">
-      <div className="modal-dialog" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Edit Privacy and Security Details</h5>
-            <button type="button" className="btn-close" onClick={handleClose}></button>
-          </div>
-          <div className="modal-body">
-          <form onSubmit={handleSubmit}>
+    <div className={`user-modal ${show ? 'show' : ''}`} id="userSecurityModal">
+      <div className="user-modal-content">
+        <div className="user-modal-header">
+          <h5 className="user-modal-title">Edit Privacy and Security Details</h5>
+          <button className="user-modal-close" onClick={handleClose}>&times;</button>
+        </div>
+        <form className="user-modal-form" onSubmit={handleSubmit}>
           <label>
             Email:
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -88,14 +73,8 @@ const UserSecurityModal = ({ show, handleClose, userData }) => {
             Phone Number:
             <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
           </label>
-          <label>
-            Location:
-            <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
-          </label>
-          <button type="submit">Save Changes</button>
+          <button type="submit" className="user-modal-submit">Save Changes</button>
         </form>
-          </div>
-        </div>
       </div>
     </div>
   );

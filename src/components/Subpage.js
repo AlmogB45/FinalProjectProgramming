@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { db, auth } from '../Firebase/config';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import Navbar from '../components/Navbar';
-import logoImage from '../assets/LOGO1.png';
-import Subitems from "../components/Subitems";
+import { truncateText } from '../utils/truncateText';
+import { useFavorites } from '../Context/FavoritesContext'
 import '../CSS/Subpage.css'
 
 function Subpage() {
@@ -13,6 +13,17 @@ function Subpage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+  const handleFavoriteClick = (e, item) => {
+    e.stopPropagation();
+    if (isFavorite(item.id)) {
+      removeFavorite(item.id);
+    } else {
+      addFavorite(item);
+    }
+  };
+
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -49,14 +60,6 @@ function Subpage() {
     navigate(`/item/${itemId}`);
   };
 
-  const truncateText = (text, maxWords) => {
-    const words = text.split(' ');
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(' ') + '...';
-    }
-    return text;
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -70,50 +73,35 @@ function Subpage() {
   return (
     <div className="sub-container">
   <Navbar />
-  <div className="panel">
+  <div className="sub-panel">
     <h2>Items in this category</h2>
-    <div className='row-sub'>
+    <div className='separatorSub'></div>
+    <div className='sub-row'>
       {items.map(item => (
-        <div key={item.id} className="col-md-3">
-          <div className="card" onClick={() => handleItemClick(item.id)}>
+        // <div  /*className="col-md-3"*/>
+          <div key={item.id} className="sub-card" onClick={() => handleItemClick(item.id)}>
             <img src={item.imageUrls[0]} alt={item.title} />
-            <div className="card-body">
-              <h5 className="card-title">{item.title}</h5>
-              <p className="card-text">{truncateText(item.description, 30)}</p>
+            <div className="sub-card-body">
+              <h5 className="sub-card-title">{item.title}</h5>
+              <p className="sub-card-text">{truncateText(item.description, 30)}</p>
               <button 
-                className="favorite-btn" 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  console.log('Add to favorites');
-                }}
-                aria-label="Add to favorites"
-              />
+               className={`favorite-btn ${isFavorite(item.id) ? 'favorited' : ''}`}
+               onClick={(e) => {
+                 e.stopPropagation();
+                 handleFavoriteClick(e, item);
+               }}
+               aria-label={isFavorite(item.id) ? "Remove from favorites" : "Add to favorites"}
+             >
+               ♥
+             </button>
             </div>
           </div>
-        </div>
+        // </div>
       ))}
     </div>
   </div>
 </div>
   );
 }
-
-//     <div className="sub-container">
-//       <Navbar />
-//       <div className="panel">
-//         <div className="logoSub">
-//           <img src={logoImage} alt="logoSub" />
-//         </div>
-//         <div className="separatorSub"></div>
-//         <div className='row'>
-//           {items.map(item => (
-//             <Subitems key={item.id} item={item} />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-
-//   )
-// }
 
 export default Subpage;
