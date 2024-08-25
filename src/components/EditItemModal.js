@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { auth, db, storage } from '../Firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -9,43 +9,44 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
     const [newImages, setNewImages] = useState([]);
 
     useEffect(() => {
-        if (itemData) {
+        if (show && itemData) {
             setEditedItem({
-              ...itemData,
-              description: itemData.description.substring(0, 400) // Limit to 400 characters
+                ...itemData,
+                description: itemData.description.substring(0, 400) // Limit to 400 characters
             });
-          }
-        }, [itemData]);
+            setNewImages([]);
+        }
+    }, [show, itemData]);
 
-    const handleChange = (e) => {
+    const handleChange = useCallback((e) => {
         const { name, value } = e.target;
         if (name === 'title' && value.length > 40) {
-            return; 
+            return;
         }
 
         if (name === 'description' && value.length > 400) {
-            return; // Don't update if description is longer than 400 characters
-          }
+            return;
+        }
 
-        setEditedItem({ ...editedItem, [e.target.name]: e.target.value });
-    };
+        setEditedItem(prevItem => ({ ...prevItem, [name]: value }));
+    }, []);
 
-    const handleImageUpload = (e) => {
+    const handleImageUpload = useCallback((e) => {
         if (e.target.files) {
-            setNewImages([...newImages, ...Array.from(e.target.files)]);
+            setNewImages(prevImages => [...prevImages, ...Array.from(e.target.files)]);
         }
-    };
+    }, []);
 
-    const removeImage = (index, isNewImage) => {
+    const removeImage = useCallback((index, isNewImage) => {
         if (isNewImage) {
-            setNewImages(newImages.filter((_, i) => i !== index));
+            setNewImages(prevImages => prevImages.filter((_, i) => i !== index));
         } else {
-            setEditedItem({
-                ...editedItem,
-                imageUrls: editedItem.imageUrls.filter((_, i) => i !== index)
-            });
+            setEditedItem(prevItem => ({
+                ...prevItem,
+                imageUrls: prevItem.imageUrls.filter((_, i) => i !== index)
+            }));
         }
-    };
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -74,8 +75,10 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
         }
     };
 
+    if (!show) return null;
+
     return (
-        <div className={`modal ${show ? 'show' : ''}`}>
+        <div className="modal show">
             <div className="modal-content">
                 <div className="modal-header">
                     <h2>Edit Item</h2>
@@ -92,7 +95,6 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
                             <label htmlFor="description">Description</label>
                             <textarea id="description" name="description" rows="3" value={editedItem?.description || ''} onChange={handleChange} maxLength={400}></textarea>
                             <small>{editedItem?.description?.length || 0}/400</small>
-
                         </div>
                         <div className="form-group">
                             <label htmlFor="location">Location</label>

@@ -74,7 +74,7 @@ function Subpage() {
     <div className="sub-container">
   <Navbar />
   <div className="sub-panel">
-    <h2>Items in this category</h2>
+    <h2 id="sub-title">Items in this category</h2>
     <div className='separatorSub'></div>
     <div className='sub-row'>
       {items.map(item => (

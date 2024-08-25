@@ -22,13 +22,17 @@
   padding: 2rem 0;
 }
 
+#sub-title {
+  padding-top: 40px;
+}
+
 .sub-panel {
   background-color: rgba(10, 25, 49, 0.8);
   color: #fff;
   padding: 2rem;
   border-radius: 15px;
   backdrop-filter: blur(10px);
-  width: 90%;
+  width: 100%;
   max-width: 1500px;
   min-width: 1500px;
   

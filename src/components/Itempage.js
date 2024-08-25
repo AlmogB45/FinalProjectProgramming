@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { db, auth, storage } from '../Firebase/config';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
+import { useFavorites } from '../Context/FavoritesContext'
 import Navbar from '../components/Navbar';
 import EditItemModal from './EditItemModal';
 import '../CSS/Itempage.css';
@@ -11,17 +12,33 @@ function ItemPage() {
     const { itemId } = useParams();
     const [item, setItem] = useState(null);
     const [showEditModal, setShowEditModal] = useState(false);
+    const { addFavorite, removeFavorite, isFavorite, favorites } = useFavorites();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchItem = async () => {
-            const itemDoc = await getDoc(doc(db, 'Items', itemId));
-            if (itemDoc.exists()) {
-                setItem(itemDoc.data());
+        async function fetchItem() {
+            try {
+                const itemDoc = await getDoc(doc(db, 'Items', itemId));
+                if (itemDoc.exists()) {
+                    setItem({ id: itemDoc.id, ...itemDoc.data() });
+                } else {
+                    console.log("No such document!");
+                    // Optionally navigate away or show an error
+                }
+            } catch (error) {
+                console.error("Error fetching item:", error);
             }
-        };
+        }
         fetchItem();
     }, [itemId]);
+
+    // useEffect(() => {
+    //     if (item && favorites.some(fav => fav.id === item.id)) {
+    //         setItem(prevItem => ({ ...prevItem, isFavorite: true }));
+    //     } else if (item) {
+    //         setItem(prevItem => ({ ...prevItem, isFavorite: false }));
+    //     }
+    // }, [favorites, item]);
 
     const handleEdit = () => setShowEditModal(true);
     const handleCloseModal = () => setShowEditModal(false);
@@ -53,6 +70,17 @@ function ItemPage() {
         }
     };
 
+    function handleFavoriteClick(e) {
+        e.stopPropagation();
+        if (item) {
+            if (isFavorite(item.id)) {
+                removeFavorite(item.id);
+            } else {
+                addFavorite(item);
+            }
+        }
+    }
+    
     if (!item) return <div>Loading...</div>;
 
     return (
@@ -78,6 +106,15 @@ function ItemPage() {
                         </button>
                     </div>
                     <div className="item-card-body">
+                        <button
+                            className={`favorite-btn ${isFavorite(item.id) ? 'favorited' : ''}`}
+
+
+                            onClick={handleFavoriteClick}
+                            aria-label={isFavorite(item.id) ? "Remove from favorites" : "Add to favorites"}
+                        >
+                            ♥
+                        </button>
                         <h1 className="item-card-title">{item.title.length > 40 ? `${item.title.substring(0, 40)}...` : item.title}</h1>
                         <p className="item-card-text location-text">{item.location}</p>
                         <div className="item-desc mt-3">
