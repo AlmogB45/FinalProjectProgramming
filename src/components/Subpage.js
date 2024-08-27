@@ -5,6 +5,8 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import Navbar from '../components/Navbar';
 import { truncateText } from '../utils/truncateText';
 import { useFavorites } from '../Context/FavoritesContext'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/Subpage.css'
 
 function Subpage() {
@@ -19,8 +21,10 @@ function Subpage() {
     e.stopPropagation();
     if (isFavorite(item.id)) {
       removeFavorite(item.id);
+      toast.success('Removed from favorites!');
     } else {
       addFavorite(item);
+      toast.success('Added to favorites!');
     }
   };
 
@@ -38,7 +42,7 @@ function Subpage() {
         }));
         setItems(itemsList);
       } catch (error) {
-        console.error("Error fetching items:", error);
+        toast.error("Error fetching items:", error);
         setError("Failed to load items. Please try again later.");
       } finally {
         setLoading(false);

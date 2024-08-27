@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { auth, db } from '../Firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
 import fetchCities from '../utils/cityApi';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/UserModals.css';
 
 const UserDetailModal = ({ show, handleClose, userData }) => {
@@ -44,10 +46,10 @@ const UserDetailModal = ({ show, handleClose, userData }) => {
           age: age,
           city: city
         });
-        console.log('User details updated successfully');
+        toast.success('User details updated successfully');
       }
     } catch (error) {
-      console.error('Error updating user details:', error);
+      toast.error('Error updating user details:', error);
     }
     handleClose();
   };

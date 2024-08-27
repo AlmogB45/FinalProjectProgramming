@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { auth, db } from '../Firebase/config';
 import { updateEmail, updatePassword } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/UserModals.css';
 
 const UserSecurityModal = ({ show, handleClose, userData }) => {
@@ -32,10 +34,10 @@ const UserSecurityModal = ({ show, handleClose, userData }) => {
           email: email,
           phone: phoneNumber
         });
-        console.log('User data updated successfully');
+        toast.success('User data updated successfully');
       }
     } catch (error) {
-      console.error('Error updating user data:', error);
+      toast.error('Error updating user data:', error);
     }
     handleClose();
   };

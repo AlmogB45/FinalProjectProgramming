@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFavorites } from '../Context/FavoritesContext';
 import { truncateText } from '../utils/truncateText';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar';
 import '../CSS/FavoritesPage.css';
 
@@ -27,6 +29,7 @@ function FavoritesPage() {
                 onClick={(e) => {
                   e.stopPropagation();
                   removeFavorite(item.id);
+                  toast.success("Removed from favorites!");
                 }}
                 aria-label="Remove from favorites"
               >

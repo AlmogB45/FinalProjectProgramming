@@ -9,6 +9,8 @@ import Navbar from '../components/Navbar';
 import '../CSS/Userprofile.css';
 import UserSecurityModal from './UserSecurityModal';
 import UserDetailModal from './UserDetailModal';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Profile() {
   const [modalType, setModalType] = useState('');
@@ -26,9 +28,9 @@ function Profile() {
   const handleLogout = () => {
     signOut(auth).then(() => {
       navigate("/");
-      console.log("Signed out successfully")
+      toast.success("Signed out successfully")
     }).catch((error) => {
-      console.error("Error signing out:", error);
+      toast.error("Error signing out:", error);
     });
   }
 
@@ -37,7 +39,7 @@ function Profile() {
       if (user) {
         fetchUserData(user.uid);
       } else {
-        console.log("User is logged out");
+        toast.info("User is logged out");
         navigate("/");
       }
     });
@@ -62,7 +64,7 @@ function Profile() {
           setProfileImage(defaultProfileImage);
         }
       } else {
-        console.log("No user data found");
+        toast.error("No user data found");
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -82,9 +84,9 @@ function Profile() {
       await updateDoc(userDocRef, { profileImageUrl: downloadURL });
 
       setProfileImage(downloadURL);
-      console.log("Profile image updated successfully");
+      toast.success("Profile image updated successfully!");
     } catch (error) {
-      console.error("Error uploading image:", error);
+      toast.error("Error uploading image:", error);
     }
   };
 
@@ -129,7 +131,7 @@ function Profile() {
             style={{ display: 'none' }}
             accept="image/*"
           />
-          <h1>{userData ? `${userData.name}, ${userData.age}` : 'Loading...'}</h1>
+          <h1>{userData ? `${userData.username}, ${userData.age}` : 'Loading...'}</h1>
           <div className="separatorProfile"></div>
         </div>
         <form>

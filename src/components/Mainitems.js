@@ -4,6 +4,8 @@ import '../CSS/Mainitems.css';
 import {db, auth} from '../Firebase/config';
 import { collection, getDocs } from 'firebase/firestore'
 import { useCollection } from "../Hooks/UseCollection";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Mainitems() {
   const [ categories, setCategories] = useState([]);

@@ -4,6 +4,8 @@ import { db, auth, storage } from '../Firebase/config';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import { useFavorites } from '../Context/FavoritesContext'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar';
 import EditItemModal from './EditItemModal';
 import '../CSS/Itempage.css';
@@ -32,19 +34,12 @@ function ItemPage() {
         fetchItem();
     }, [itemId]);
 
-    // useEffect(() => {
-    //     if (item && favorites.some(fav => fav.id === item.id)) {
-    //         setItem(prevItem => ({ ...prevItem, isFavorite: true }));
-    //     } else if (item) {
-    //         setItem(prevItem => ({ ...prevItem, isFavorite: false }));
-    //     }
-    // }, [favorites, item]);
-
     const handleEdit = () => setShowEditModal(true);
     const handleCloseModal = () => setShowEditModal(false);
 
     const handleItemUpdate = (updatedItem) => {
         setItem(updatedItem);
+        toast.success('Item updated successfully!');
     };
 
     const handleDelete = async () => {
@@ -75,8 +70,11 @@ function ItemPage() {
         if (item) {
             if (isFavorite(item.id)) {
                 removeFavorite(item.id);
+                toast.success('Removed from favorites!');
+
             } else {
                 addFavorite(item);
+                toast.success('Added to favorites!');
             }
         }
     }
@@ -108,8 +106,6 @@ function ItemPage() {
                     <div className="item-card-body">
                         <button
                             className={`favorite-btn ${isFavorite(item.id) ? 'favorited' : ''}`}
-
-
                             onClick={handleFavoriteClick}
                             aria-label={isFavorite(item.id) ? "Remove from favorites" : "Add to favorites"}
                         >

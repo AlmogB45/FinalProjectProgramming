@@ -7,6 +7,8 @@ import { doc, setDoc } from 'firebase/firestore';
 import '../CSS/Register.css';
 import logoImage from "../assets/LOGO1.png";
 import fetchCities from '../utils/cityApi';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
     const [citiesList, setCitiesList] = useState([]);
@@ -34,10 +36,10 @@ export default function Register() {
           // Store additional user data in Firestore
           await setDoc(doc(db, 'Users', user.uid), formData);
       
-          console.log("User registered successfully");
+          toast.success("User registered successfully");
           navigate("/");
         } catch (error) {
-          console.error("Error in registration:", error);
+          toast.error("Error in registration:", error);
           // Handle error (e.g., show error message to user)
         }
       };

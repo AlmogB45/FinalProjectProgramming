@@ -5,6 +5,8 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 import { useNavigate, useParams } from 'react-router-dom';
 import fetchCities from '../utils/cityApi';
 import Navbar from '../components/Navbar';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/PublishItem.css';
 
 function PublishItem() {
@@ -72,22 +74,25 @@ function PublishItem() {
       preview: URL.createObjectURL(file)
     }));
     setImages(prevImages => [...prevImages, ...newImages].slice(0, 5)); // Limit to 5 images
+    toast.success("Succesfully added image!")
+
   };
 
   const removeImage = (index) => {
     setImages(prevImages => prevImages.filter((_, i) => i !== index));
+    toast.warning("Succesfully removed image!")
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!auth.currentUser) {
-      alert('You must be logged in to publish an item');
+      toast.warning('You must be logged in to publish an item');
       return;
     }
 
     if (images.length === 0) {
-      alert('Please upload at least one image');
+      toast.info('Please upload at least one image');
       return;
     }
 
@@ -113,11 +118,11 @@ function PublishItem() {
         createdAt: new Date()
       });
 
-      alert('Item published successfully!');
+      toast.success('Item published successfully!');
       navigate('/mainpage');
     } catch (error) {
-      console.error('Error publishing item:', error);
-      alert('Failed to publish item. Please try again.');
+      toast.error('Error publishing item:', error);
+      toast.error('Failed to publish item. Please try again.');
     }
   };
 

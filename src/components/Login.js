@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence, browserLocalPersistence, sendPasswordResetEmail } from 'firebase/auth';
 import { auth, db } from '../Firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/Login.css';
 import logoImage from "../assets/LOGO1.png";
 
@@ -39,10 +41,10 @@ export default function Login() {
       } else {
         console.log("No additional user data found");
       }
-
+      toast.success("Login successful!");
       navigate("/mainpage");
     } catch (error) {
-      console.log("Login error:", error.code, error.message);
+      toast.error("Login error:", error.code, error.message);
       setLoginError("Invalid email or password. Please try again.");
     }
   };
@@ -50,16 +52,16 @@ export default function Login() {
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     if (!email) {
-      alert("Please fill in your email address in the appropriate field first.");
+      toast.info("Please fill in your email address in the appropriate field first.");
       return;
     }
     try {
       await sendPasswordResetEmail(auth, email);
-      alert("Password reset email sent. Please check your inbox.");
+      toast.info("Password reset email sent. Please check your inbox.");
       setLoginError(null);
     } catch (error) {
-      console.error("Password reset error:", error);
-      alert("Failed to send password reset email. Please try again.");
+      toast.error("Password reset error:", error);
+      toast.error("Failed to send password reset email. Please try again.");
     }
   };
 

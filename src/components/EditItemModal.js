@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { auth, db, storage } from '../Firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/EditItemModal.css';
 
 const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) => {

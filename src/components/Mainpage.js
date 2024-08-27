@@ -3,6 +3,7 @@ import '../CSS/Mainpage.css';
 import logoImage from '../assets/LOGO1.png';
 import Mainitems from '../components/Mainitems';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function Mainpage() {
   return (
@@ -17,8 +18,11 @@ function Mainpage() {
         <div className='row'>
           <Mainitems />
         </div>
+        <div className="separatorMain"></div>
+        <Footer/>
       </div>
     </div>
+    
   );
 }
 

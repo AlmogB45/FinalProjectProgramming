@@ -8,11 +8,26 @@ import Subpage from './components/Subpage';
 import Itempage from './components/Itempage';
 import PublishItem from "./components/PublishItems";
 import FavoritesPage from './components/FavoritesPage';
+import NotFound from './components/NotFound';
 import { FavoritesProvider } from "./Context/FavoritesContext";
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
       <FavoritesProvider>
         <BrowserRouter>
           <Routes>
@@ -26,6 +41,7 @@ function App() {
             <Route path="/publish-item" element={<PublishItem />} />
             <Route path="/edit-item/:itemId" element={<PublishItem />} />
             <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </FavoritesProvider>
