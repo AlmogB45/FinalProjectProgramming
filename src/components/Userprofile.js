@@ -4,7 +4,7 @@ import { auth, db, storage } from '../Firebase/config';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import defaultProfileImage from '../assets/userpic.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import '../CSS/Userprofile.css';
 import UserSecurityModal from './UserSecurityModal';
@@ -131,13 +131,18 @@ function Profile() {
             style={{ display: 'none' }}
             accept="image/*"
           />
-          <h1>{userData ? `${userData.username}, ${userData.age}` : 'Loading...'}</h1>
+          <h1>{userData ? `${userData.name}, ${userData.age}` : 'Loading...'}</h1>
           <div className="separatorProfile"></div>
         </div>
         <form>
           <div className="buttons-profile">
             <button className="details" type="button" onClick={handleShowDetail}>Personal Details</button>
             <button className="security" type="button" onClick={handleShowSecurity}>Privacy and Security</button>
+            <div className="buttons-profile">
+              <Link to="/my-uploads" className="uploads">
+              My Uploads
+              </Link>
+            </div>
             <button onClick={handleLogout} className="logout" type="button">Logout</button>
           </div>
         </form>

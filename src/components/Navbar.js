@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../Firebase/config'
 import '../CSS/Navbar.css';
+  
 
 const Navbar = () => {
+  
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -22,7 +25,11 @@ const Navbar = () => {
           <Link to="/favorites" className="navbar-link">
             Favorites
           </Link>
-          
+
+          <Link to="/filter" className="navbar-link">
+            Filter Items
+          </Link>
+
         </ul>
         <div className="navbar-search">
           <input type="text" placeholder="Search" />

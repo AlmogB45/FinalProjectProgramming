@@ -1,14 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { auth, db, storage } from '../Firebase/config';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import fetchCities from '../utils/cityApi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/EditItemModal.css';
+import TagSelector from '../utils/TagSelector';
+import { categoryLabels } from '../utils/CategoryLabels';
+
+
 
 const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) => {
     const [editedItem, setEditedItem] = useState(null);
     const [newImages, setNewImages] = useState([]);
+    const [selectedTags, setSelectedTags] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [citiesList, setCitiesList] = useState([]);
+    const [selectedCity, setSelectedCity] = useState("");
+    const [useRegisteredLocation, setUseRegisteredLocation] = useState(false);
+    const [registeredLocation, setRegisteredLocation] = useState('');
 
     useEffect(() => {
         if (show && itemData) {
@@ -17,8 +28,60 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
                 description: itemData.description.substring(0, 400) // Limit to 400 characters
             });
             setNewImages([]);
+            setSelectedCategory(itemData.categoryTitle || '');
+            setSelectedTags(itemData.labels || []);
+            setSelectedCity(itemData.location || '');
+            fetchUserRegisteredLocation();
+            fetchCitiesList();
         }
     }, [show, itemData]);
+
+    const fetchUserRegisteredLocation = async () => {
+        if (auth.currentUser) {
+            const userRef = doc(db, 'Users', auth.currentUser.uid);
+            const userSnap = await getDoc(userRef);
+            if (userSnap.exists()) {
+                const userData = userSnap.data();
+                setRegisteredLocation(userData.city || '');
+            }
+        }
+    };
+
+    const fetchCitiesList = async () => {
+        try {
+            const cities = await fetchCities();
+            setCitiesList(cities);
+        } catch (error) {
+            console.error('Error fetching cities:', error);
+            toast.error('Failed to load cities. Please try again.');
+        }
+    };
+
+    useEffect(() => {
+        if (useRegisteredLocation && registeredLocation) {
+            setSelectedCity(registeredLocation);
+        } else if (!useRegisteredLocation && itemData) {
+            setSelectedCity(itemData.location || "");
+        }
+    }, [useRegisteredLocation, registeredLocation, itemData]);
+
+    const handleCategoryChange = (e) => {
+        const newCategory = e.target.value;
+        setSelectedCategory(newCategory);
+        setEditedItem(prev => ({ ...prev, categoryTitle: newCategory }));
+        setSelectedTags([]); // Clear tags when category changes
+    };
+
+    const handleTagToggle = (tag) => {
+        setSelectedTags(prevTags => {
+            if (prevTags.includes(tag)) {
+                return prevTags.filter(t => t !== tag);
+            } else if (prevTags.length < 5) {
+                return [...prevTags, tag];
+            }
+            return prevTags;
+        });
+    };
 
     const handleChange = useCallback((e) => {
         const { name, value } = e.target;
@@ -64,6 +127,9 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
             const updatedItem = {
                 ...editedItem,
                 imageUrls: [...editedItem.imageUrls, ...newImageUrls],
+                labels: selectedTags,
+                categoryTitle: selectedCategory,
+                location: selectedCity,
                 updatedAt: new Date()
             };
 
@@ -94,13 +160,68 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
                             <small>{editedItem?.title?.length || 0}/40</small>
                         </div>
                         <div className="form-group">
+                            <label htmlFor="category">Category</label>
+                            <select
+                                id="category"
+                                value={selectedCategory}
+                                onChange={handleCategoryChange}
+                                required
+                            >
+                                <option value="">Select a category</option>
+                                {Object.keys(categoryLabels).map(category => (
+                                    <option key={category} value={category}>{category}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {selectedCategory && (
+                            <div className="form-group">
+                                <h3>Labels (Select up to 5)</h3>
+                                <TagSelector
+                                    category={selectedCategory}
+                                    selectedTags={selectedTags}
+                                    onTagToggle={handleTagToggle}
+                                />
+                                <small>{selectedTags.length}/5 labels selected</small>
+                            </div>
+                        )}
+                        <div className="form-group">
                             <label htmlFor="description">Description</label>
                             <textarea id="description" name="description" rows="3" value={editedItem?.description || ''} onChange={handleChange} maxLength={400}></textarea>
                             <small>{editedItem?.description?.length || 0}/400</small>
                         </div>
                         <div className="form-group">
                             <label htmlFor="location">Location</label>
-                            <input type="text" id="location" name="location" value={editedItem?.location || ''} onChange={handleChange} />
+                            <select
+                                id='CitySelect'
+                                value={selectedCity}
+                                onChange={(e) => setSelectedCity(e.target.value)}
+                                disabled={useRegisteredLocation}
+                                required
+                            >
+                                <option value="">{useRegisteredLocation ? registeredLocation : "Select a city"}</option>
+                                {!useRegisteredLocation && citiesList.map((city) => (
+                                    <option className='city-option' key={city.id} value={city.englishName}>
+                                        {city.englishName}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="checkbox">Use my registered location</label>
+                            <input
+                                type="checkbox"
+                                id="publishCheck"
+                                checked={useRegisteredLocation}
+                                onChange={(e) => {
+                                    setUseRegisteredLocation(e.target.checked);
+                                    if (e.target.checked) {
+                                        setSelectedCity(registeredLocation);
+                                    } else {
+                                        setSelectedCity(itemData.location || "");
+                                    }
+                                }}
+                            />
                         </div>
                         <div className="form-group">
                             <label htmlFor="images">Add Images</label>

@@ -37,36 +37,10 @@
     margin: 24px;
   }
   
-  .navbar-item.dropdown {
-    position: relative;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    list-style: none;
-    display: none;
-  }
-  
-  .dropdown-menu li {
-    margin-bottom: 5px;
-  }
-  
-  .dropdown-menu li:last-child {
-    margin-bottom: 0;
-  }
-  
-  .dropdown-item a {
-    text-decoration: none;
-    color: #fff;
-  }
-  
   .navbar-search {
     display: flex;
     align-items: center;
+    margin-left: 10px;
   }
   
   .navbar-search input {

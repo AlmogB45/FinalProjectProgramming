@@ -151,8 +151,6 @@
   font-size: 0.9rem;
   margin-bottom: 1rem;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
-  /* Adjust this number to show more or fewer lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

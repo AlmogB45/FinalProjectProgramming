@@ -1,0 +1,26 @@
+.tag-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .tag-button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .tag-button.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  .tag-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }

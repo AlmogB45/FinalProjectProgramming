@@ -112,6 +112,11 @@ function ItemPage() {
                             ♥
                         </button>
                         <h1 className="item-card-title">{item.title.length > 40 ? `${item.title.substring(0, 40)}...` : item.title}</h1>
+                        <div className="item-labels">
+                            {item.labels && item.labels.map((label, index) => (
+                                <span key={index} className="item-label">{label}</span>
+                            ))}
+                        </div>
                         <p className="item-card-text location-text">{item.location}</p>
                         <div className="item-desc mt-3">
                             <h2 className="item-h2">Item Description</h2>

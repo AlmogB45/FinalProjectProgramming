@@ -82,7 +82,6 @@ function Subpage() {
     <div className='separatorSub'></div>
     <div className='sub-row'>
       {items.map(item => (
-        // <div  /*className="col-md-3"*/>
           <div key={item.id} className="sub-card" onClick={() => handleItemClick(item.id)}>
             <img src={item.imageUrls[0]} alt={item.title} />
             <div className="sub-card-body">
