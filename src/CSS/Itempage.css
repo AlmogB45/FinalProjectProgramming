@@ -25,6 +25,9 @@
     line-height: 1.5;
 }
 
+.item-tip {
+font-size: medium;}
+
 .carousel {
     border-bottom: 1px solid #ddd;
 }

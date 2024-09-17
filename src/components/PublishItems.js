@@ -195,6 +195,7 @@ function PublishItem() {
               ))}
             </div>
           </div>
+          <p className="item-tip">Tip: for better visibility, add tags via the "Edit" button on the item's page</p>
           <button type="submit" className="btn publish-btn">Publish Item</button>
         </form>
       </div>

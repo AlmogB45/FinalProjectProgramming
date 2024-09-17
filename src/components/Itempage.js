@@ -126,6 +126,7 @@ function ItemPage() {
                         </div>
                         {auth.currentUser && auth.currentUser.uid === item.userId && (
                             <div className="mt-3">
+                                <p className="item-tip">Tip: for better visibility, add tags via the "Edit" button</p>
                                 <button onClick={handleEdit} className="edit-button">Edit</button>
                                 <button onClick={handleDelete} className="delete-button">Delete</button>
                             </div>
