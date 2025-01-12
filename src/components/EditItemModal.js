@@ -20,7 +20,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
     const [selectedCity, setSelectedCity] = useState("");
     const [useRegisteredLocation, setUseRegisteredLocation] = useState(false);
     const [registeredLocation, setRegisteredLocation] = useState('');
-
+    // If modal is shown and itemData exists, allow new parameters to be set (edit existing)
     useEffect(() => {
         if (show && itemData) {
             setEditedItem({
@@ -36,6 +36,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
         }
     }, [show, itemData]);
 
+    // Fetch user registered location
     const fetchUserRegisteredLocation = async () => {
         if (auth.currentUser) {
             const userRef = doc(db, 'Users', auth.currentUser.uid);
@@ -47,6 +48,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
         }
     };
 
+    // Fetch city list from API 
     const fetchCitiesList = async () => {
         try {
             const cities = await fetchCities();
@@ -65,6 +67,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
         }
     }, [useRegisteredLocation, registeredLocation, itemData]);
 
+    // Handles change of category and handle tag showing.
     const handleCategoryChange = (e) => {
         const newCategory = e.target.value;
         setSelectedCategory(newCategory);
@@ -72,6 +75,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
         setSelectedTags([]); // Clear tags when category changes
     };
 
+    // Handles tag toggle
     const handleTagToggle = (tag) => {
         setSelectedTags(prevTags => {
             if (prevTags.includes(tag)) {
@@ -83,6 +87,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
         });
     };
 
+    // Handles changes and set correct limitation to text length
     const handleChange = useCallback((e) => {
         const { name, value } = e.target;
         if (name === 'title' && value.length > 40) {
@@ -96,12 +101,14 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
         setEditedItem(prevItem => ({ ...prevItem, [name]: value }));
     }, []);
 
+    // Handles image upload 
     const handleImageUpload = useCallback((e) => {
         if (e.target.files) {
             setNewImages(prevImages => [...prevImages, ...Array.from(e.target.files)]);
         }
     }, []);
 
+    // Handles image removal
     const removeImage = useCallback((index, isNewImage) => {
         if (isNewImage) {
             setNewImages(prevImages => prevImages.filter((_, i) => i !== index));
@@ -113,6 +120,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
         }
     }, []);
 
+    // Handles form submit 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -187,7 +195,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
                         )}
                         <div className="form-group">
                             <label htmlFor="description">Description</label>
-                            <textarea id="description" name="description" rows="3" value={editedItem?.description || ''} onChange={handleChange} maxLength={400}></textarea>
+                            <textarea id="edit-description" name="description" rows="3" value={editedItem?.description || ''} onChange={handleChange} maxLength={400}></textarea>
                             <small>{editedItem?.description?.length || 0}/400</small>
                         </div>
                         <div className="form-group">
@@ -241,7 +249,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
                                 </div>
                             ))}
                         </div>
-                        <button type="submit" className="submit-button">Save Changes</button>
+                        <button type="submit" className="edit-submit-button">Save Changes</button>
                     </form>
                 </div>
             </div>

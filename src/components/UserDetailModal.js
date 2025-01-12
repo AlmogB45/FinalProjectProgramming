@@ -12,8 +12,7 @@ const UserDetailModal = ({ show, handleClose, userData }) => {
   const [city, setCity] = useState('');
   const [citiesList, setCitiesList] = useState([]);
 
-
-
+  // Handle update of details 
   useEffect(() => {
     if (userData) {
       setName(userData.name || '');
@@ -23,19 +22,7 @@ const UserDetailModal = ({ show, handleClose, userData }) => {
     }
   }, [userData]);
 
-  // useEffect(() => {
-  //   const modalElement = document.getElementById('userDetailModal');
-  //   if (show) {
-  //     modalElement.classList.add('show');
-  //     modalElement.style.display = 'block';
-  //     document.body.classList.add('modal-open');
-  //   } else {
-  //     modalElement.classList.remove('show');
-  //     modalElement.style.display = 'none';
-  //     document.body.classList.remove('modal-open');
-  //   }
-  // }, [show]);
-
+  // Handle the submit 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -54,6 +41,7 @@ const UserDetailModal = ({ show, handleClose, userData }) => {
     handleClose();
   };
 
+  // Fetch the cities from API
   useEffect(() => {
     const fetchCitiesData = async () => {
       try {
@@ -67,6 +55,7 @@ const UserDetailModal = ({ show, handleClose, userData }) => {
     fetchCitiesData();
   }, []);
 
+  // Handle the modal display states
   useEffect(() => {
     const modalElement = document.getElementById('userDetailModal');
     if (show) {

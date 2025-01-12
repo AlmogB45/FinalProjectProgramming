@@ -13,6 +13,7 @@ const UploadsPage = () => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
+    // Checks if user is logged-in, if not, navigate to login page
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -20,13 +21,14 @@ const UploadsPage = () => {
             } else {
                 setLoading(false);
                 toast.info("Please log in to view your uploads");
-                navigate("/login");
+                navigate("/");
             }
         });
 
         return () => unsubscribe();
     }, [navigate]);
 
+    // Fetch items from Firebase
     const fetchMyItems = async (uid) => {
         try {
             const q = query(

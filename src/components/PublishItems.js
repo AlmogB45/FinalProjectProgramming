@@ -20,6 +20,7 @@ function PublishItem() {
   const [registeredLocation, setRegisteredLocation] = useState('');
   const [citiesList, setCitiesList] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,6 +68,14 @@ function PublishItem() {
     })();
   }, []);
 
+  // Handle change of phone number
+  const handlePhoneNumberChange = (e) => {
+    const input = e.target.value;
+    const cleaned = input.replace(/[^\d\s-]/g, '');
+    setPhoneNumber(cleaned);
+  };
+
+  // Handles image upload
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     const newImages = files.map(file => ({
@@ -78,11 +87,19 @@ function PublishItem() {
 
   };
 
+  // Validates phone number 
+  const validatePhoneNumber = (phone) => {
+    const phoneRegex = /^[0-9]{10}$/; // Basic validation for 10 digits
+    return phoneRegex.test(phone.replace(/[^\d]/g, '')); // Remove non-digits before testing
+  };
+
+  // Removes uploaded image
   const removeImage = (index) => {
     setImages(prevImages => prevImages.filter((_, i) => i !== index));
     toast.warning("Succesfully removed image!")
   };
 
+  // Handle the submit 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -93,6 +110,11 @@ function PublishItem() {
 
     if (images.length === 0) {
       toast.info('Please upload at least one image');
+      return;
+    }
+
+    if (!validatePhoneNumber(phoneNumber)) {
+      toast.error('Please enter a valid 10-digit phone number');
       return;
     }
 
@@ -115,6 +137,7 @@ function PublishItem() {
         location: selectedCity,
         imageUrls,
         userId: auth.currentUser.uid,
+        phoneNumber: phoneNumber.replace(/[^\d]/g, ''), 
         createdAt: new Date()
       });
 
@@ -139,7 +162,11 @@ function PublishItem() {
           </div>
           <div className="form-group">
             <label htmlFor="description">Description</label>
-            <textarea id="description" rows="3" value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+            <textarea id="publish-description" rows="3" value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+          </div>
+          <div className="form-group">
+            <label htmlFor="phoneNumber">Phone Number (10 digits)</label>
+            <input type="tel" id="publish-phoneNumber" value={phoneNumber} onChange={handlePhoneNumberChange} placeholder="Enter your phone number" required/>
           </div>
           <div className="form-group">
             <label htmlFor="category">Category</label>

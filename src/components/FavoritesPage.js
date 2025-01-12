@@ -16,6 +16,7 @@ function FavoritesPage() {
   <Navbar />
   <div className="fav-panel">
     <h2 className='fav-h2'>Your Favorites</h2>
+    <div className="separatorFav"></div>
     <div className='fav-row'>
       {favorites.map(item => (
         <div key={item.id} className="fav-col-md-3">

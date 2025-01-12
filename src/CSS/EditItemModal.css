@@ -13,8 +13,9 @@
   
 .modal.show {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding: 20px 0;
 }
   
 .modal-content {
@@ -74,10 +75,10 @@
     outline: none;
 }
   
-.submit-button {
+.edit-submit-button {
     background-color: #49555e;
     color: white;
-    margin-top: 20%;
+    margin: 20% auto 0; 
     padding: 12px 20px;
     border: none;
     border-radius: 6px;
@@ -85,13 +86,14 @@
     font-size: 16px;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.1s ease;
+    display: block; 
 }
-  
-.submit-button:hover {
+
+.edit-submit-button:hover {
     background-color: #3d474e;
 }
 
-.submit-button:active {
+.edit-submit-button:active {
     transform: translateY(1px);
 }
 

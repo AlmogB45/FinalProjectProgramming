@@ -12,6 +12,7 @@ const UserSecurityModal = ({ show, handleClose, userData }) => {
   const [location, setLocation] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
+  // Handle update of security details 
   useEffect(() => {
     if (userData) {
       setEmail(userData.email || '');
@@ -19,6 +20,7 @@ const UserSecurityModal = ({ show, handleClose, userData }) => {
     }
   }, [userData]);
 
+  // Handle the submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -42,6 +44,7 @@ const UserSecurityModal = ({ show, handleClose, userData }) => {
     handleClose();
   };
 
+  // Handle the modal display states
   useEffect(() => {
     const modalElement = document.getElementById('userSecurityModal');
     if (show) {

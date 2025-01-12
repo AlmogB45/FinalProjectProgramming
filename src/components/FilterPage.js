@@ -16,6 +16,7 @@ const FilterPage = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
 
+    // Fetches items from Firebase
     useEffect(() => {
         const fetchItems = async () => {
             const itemsCollection = collection(db, 'Items');
@@ -32,6 +33,7 @@ const FilterPage = () => {
         fetchItems();
     }, []);
 
+    // Apllies filters and show updated results
     useEffect(() => {
         const applyFilters = () => {
             let filtered = items;
@@ -56,6 +58,7 @@ const FilterPage = () => {
         applyFilters();
     }, [items, selectedCity, selectedCategory, selectedTags]);
 
+    // Handles tag toggle
     const handleTagToggle = (tag) => {
         setSelectedTags(prev => 
             prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]

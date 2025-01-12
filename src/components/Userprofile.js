@@ -25,6 +25,7 @@ function Profile() {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
+  // Handle logout 
   const handleLogout = () => {
     signOut(auth).then(() => {
       navigate("/");
@@ -34,6 +35,7 @@ function Profile() {
     });
   }
 
+  // Fetch user details for logged-in user and keeps the remember me status, else, redirected to login page
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -50,6 +52,7 @@ function Profile() {
     return () => unsubscribe();
   }, [navigate]);
 
+  // Fetch user data from Firebase
   const fetchUserData = async (uid) => {
     try {
       const userDocRef = doc(db, 'Users', uid);
@@ -71,6 +74,7 @@ function Profile() {
     }
   };
 
+  // Handle profile image upload
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -94,6 +98,7 @@ function Profile() {
     fileInputRef.current.click();
   };
 
+  // Handle the remember me toggle option
   const handleRememberMeToggle = async () => {
     const newRememberMe = !rememberMe;
     setRememberMe(newRememberMe);

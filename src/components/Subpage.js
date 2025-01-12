@@ -17,6 +17,7 @@ function Subpage() {
   const navigate = useNavigate();
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
+  // Handle the favorite icon click 
   const handleFavoriteClick = (e, item) => {
     e.stopPropagation();
     if (isFavorite(item.id)) {
@@ -28,7 +29,7 @@ function Subpage() {
     }
   };
 
-
+  // Fetch items 
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -48,7 +49,7 @@ function Subpage() {
         setLoading(false);
       }
     };
-
+    // If user is logged-out, it'll navigate to login page
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         fetchItems();
@@ -59,7 +60,8 @@ function Subpage() {
 
     return () => unsubscribe();
   }, [categoryId, navigate]);
-
+  
+  // Handle click on item (moves to item page)
   const handleItemClick = (itemId) => {
     navigate(`/item/${itemId}`);
   };

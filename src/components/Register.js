@@ -53,6 +53,7 @@ export default function Register() {
         city: ''
       });
 
+      // Handles input changes
       const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -61,6 +62,7 @@ export default function Register() {
         }));
       };
 
+      // Fetch cities from API
     useEffect(() => {
         (async function fetchCitiesFunc() {
             try {

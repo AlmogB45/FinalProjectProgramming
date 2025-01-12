@@ -12,6 +12,7 @@ export default function Mainitems() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  // Checks if user is logged in and fetches categories
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
@@ -24,6 +25,7 @@ export default function Mainitems() {
     return () => unsubscribe();
   }, [navigate]);
 
+  // Fetches categories
   const fetchCategories = async () => {
     try {
       const ref = collection(db, 'Categories');
@@ -37,6 +39,7 @@ export default function Mainitems() {
     }
   };
 
+  // Fliters categorties to prevent duplicates (Check functionallity)
   const filterUniqueCategories = (categoriesData) => {
     const uniqueCategories = [];
     const categoryTitles = new Set();
@@ -49,6 +52,7 @@ export default function Mainitems() {
     return uniqueCategories;
   };
 
+  // Handle button click for categories icons
   const handleButtonClick = (categoryId) => {
     navigate(`/category/${categoryId}`);
     console.log("Button clicked for category:", categoryId);

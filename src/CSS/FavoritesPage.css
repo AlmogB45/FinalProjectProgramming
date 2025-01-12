@@ -9,7 +9,6 @@
 .fav-panel {
     flex: 1;
     background-color: rgba(10, 25, 49, 0.8);
-    /* Adjust opacity for glass effect */
     color: #fff;
     padding: 40px;
     display: flex;
@@ -17,9 +16,16 @@
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(10px);
-    /* Apply blur effect for glass-like appearance */
     padding-bottom: 85px;
 }
+
+.separatorFav {
+    border: none;
+    background-color: #808080;
+    width: 50%;  
+    height: 1px;
+    margin: 10px 0;  
+  }
 
 .fav-h2 {
     color: #fff;
@@ -63,8 +69,6 @@
 .fav-card-text {
     font-size: 0.9rem;
     margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;

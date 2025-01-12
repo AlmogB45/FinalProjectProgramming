@@ -22,6 +22,7 @@ export const FavoritesProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // Handles addition to favorites
   const addFavorite = (item) => {
     setFavorites((prevFavorites) => {
       const newFavorites = [...prevFavorites, item];
@@ -30,6 +31,7 @@ export const FavoritesProvider = ({ children }) => {
     });
   };
 
+  // Handles removal from favorites
   const removeFavorite = (itemId) => {
     setFavorites((prevFavorites) => {
       const newFavorites = prevFavorites.filter((item) => item.id !== itemId);

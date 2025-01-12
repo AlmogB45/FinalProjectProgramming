@@ -37,7 +37,6 @@ export default function Login() {
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
         console.log("Additional user data:", userData);
-        // You can store this data in your app's state if needed
       } else {
         console.log("No additional user data found");
       }
@@ -49,6 +48,7 @@ export default function Login() {
     }
   };
 
+  // Handles password reset action
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     if (!email) {
@@ -105,13 +105,13 @@ export default function Login() {
               </label>
             </div>
 
-            {/* Change to <Link> tag */}
+          
             <div className='login-link-container'>
             <a href="#" className="login-link" onClick={handlePasswordReset}>Can't login? Click here!</a>
             </div>
-            {/* End */}
-            <div className="separatorLogin"></div>
 
+            <div className="separatorLogin"></div>
+            
             {loginError && <p className="error-message">{loginError}</p>}
 
             <div className="button-container">
