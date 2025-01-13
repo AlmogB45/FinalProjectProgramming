@@ -156,7 +156,7 @@
   text-overflow: ellipsis;
 }
 
-.favorite-btn {
+.sub-favorite-btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -167,8 +167,8 @@
   position: relative;
 }
 
-.favorite-btn::before,
-.favorite-btn::after {
+.sub-favorite-btn::before,
+.sub-favorite-btn::after {
   content: '';
   position: absolute;
   top: 0;
@@ -179,13 +179,13 @@
   /* A brighter red for favorited items */
 }
 
-.favorite-btn::before {
+.sub-favorite-btn::before {
   left: 15px;
   transform: rotate(-45deg);
   transform-origin: 0 100%;
 }
 
-.favorite-btn::after {
+.sub-favorite-btn::after {
   left: 0;
   transform: rotate(45deg);
   transform-origin: 100% 100%;

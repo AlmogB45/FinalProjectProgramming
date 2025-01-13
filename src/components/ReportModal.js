@@ -92,7 +92,8 @@ const ReportModal = ({ itemId, itemTitle, isOpen, onClose }) => {
                 required
               >
                 <option value="">Select a reason</option>
-                <option value="inappropriate">Inappropriate Content</option>
+                <option value="inappropriate">Inappropriate or Harmful Content</option>
+                <option value="inappropriate">Misleading Title / Description</option>
                 <option value="spam">Spam</option>
                 <option value="scam">Potential Scam</option>
                 <option value="offensive">Offensive Content</option>

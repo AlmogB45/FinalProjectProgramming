@@ -150,6 +150,7 @@ function ItemPage() {
                     </button>
                 </div>
                 <div className="item-card-body">
+                    <div className="action-buttons">
                     <button
                         className={`favorite-btn ${isFavorite(item.id) ? 'favorited' : ''}`}
                         onClick={handleFavoriteClick}
@@ -164,6 +165,7 @@ function ItemPage() {
                     >
                         Report
                     </button>
+                    </div>
                     <h1 className="item-card-title">
                         {item.title.length > 40 ? `${item.title.substring(0, 40)}...` : item.title}
                     </h1>

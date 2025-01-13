@@ -58,6 +58,7 @@ const UploadsPage = () => {
             <Navbar />
             <div className="upload-panel">
                 <h2 className='upload-h2'>Your Uploads</h2>
+                <div className="separatorUpload"></div>
                 <div className='upload-row'>
                     {myItems.map(item => (
                         <div key={item.id} className="upload-col-md-3">

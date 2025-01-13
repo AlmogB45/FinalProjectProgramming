@@ -90,7 +90,7 @@ function Subpage() {
               <h5 className="sub-card-title">{item.title}</h5>
               <p className="sub-card-text">{truncateText(item.description, 30)}</p>
               <button 
-               className={`favorite-btn ${isFavorite(item.id) ? 'favorited' : ''}`}
+               className={`sub-favorite-btn ${isFavorite(item.id) ? 'favorited' : ''}`}
                onClick={(e) => {
                  e.stopPropagation();
                  handleFavoriteClick(e, item);

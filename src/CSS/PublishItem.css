@@ -12,8 +12,9 @@
   flex: 1;
   background-color: rgba(10, 25, 49, 0.8);
   color: #fff;
+  margin-top:100px;
   padding: 40px;
-  display: flex;
+  display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;

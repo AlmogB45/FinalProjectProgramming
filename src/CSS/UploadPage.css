@@ -27,6 +27,14 @@
     font-size: 2rem;
 }
 
+.separatorUpload {
+    border: none;
+    background-color: #808080;
+    width: 50%;  
+    height: 1px;
+    margin: 10px 0;  
+  }
+
 .upload-row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);

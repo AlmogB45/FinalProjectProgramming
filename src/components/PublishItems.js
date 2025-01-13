@@ -108,6 +108,16 @@ function PublishItem() {
       return;
     }
 
+    if (title.length > 40) {
+      toast.error('Title must be 40 characters or less');
+      return;
+    }
+
+    if (description.length > 400) {
+      toast.error('Description must be 400 characters or less');
+      return;
+    }
+
     if (images.length === 0) {
       toast.info('Please upload at least one image');
       return;
@@ -137,7 +147,7 @@ function PublishItem() {
         location: selectedCity,
         imageUrls,
         userId: auth.currentUser.uid,
-        phoneNumber: phoneNumber.replace(/[^\d]/g, ''), 
+        phoneNumber: phoneNumber.replace(/[^\d]/g, ''),
         createdAt: new Date()
       });
 
@@ -158,15 +168,23 @@ function PublishItem() {
         <form className='publish-form' onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <input type="text" id="title" value={title} onChange={(e) => { if (e.target.value.length <= 40) { setTitle(e.target.value); } }} required />
+            <small className={`char-count ${title.length > 40 ? 'text-danger' : ''}`}>
+              {title.length}/40 characters
+            </small>
           </div>
           <div className="form-group">
             <label htmlFor="description">Description</label>
-            <textarea id="publish-description" rows="3" value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+            <textarea id="publish-description" rows="3" value={description} onChange={(e) => {
+              if (e.target.value.length <= 400) { setDescription(e.target.value); }
+            }} required></textarea>
+            <small className={`char-count ${description.length > 400 ? 'text-danger' : ''}`}>
+              {description.length}/400 characters
+            </small>
           </div>
           <div className="form-group">
             <label htmlFor="phoneNumber">Phone Number (10 digits)</label>
-            <input type="tel" id="publish-phoneNumber" value={phoneNumber} onChange={handlePhoneNumberChange} placeholder="Enter your phone number" required/>
+            <input type="tel" id="publish-phoneNumber" value={phoneNumber} onChange={handlePhoneNumberChange} placeholder="Enter your phone number" required />
           </div>
           <div className="form-group">
             <label htmlFor="category">Category</label>

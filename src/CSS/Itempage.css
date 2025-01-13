@@ -11,6 +11,7 @@
 
 .container {
     max-width: 800px;
+    min-height: 100vh; 
     margin: auto;
     background-color: #ffffff;
     padding: 0;
@@ -26,7 +27,7 @@
 .carousel img {
     height: 450px;
     width: 100%;
-    object-fit: contain;
+    object-fit: fill;
     background-color: #f8f9fa;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
@@ -94,6 +95,7 @@
 /* Description section */
 .item-desc {
     margin: 30px 0;
+    width: 100%;
 }
 
 .item-h2 {
@@ -103,17 +105,28 @@
     margin-bottom: 15px;
 }
 
+.text-container {
+    background-color: #f6f6f6;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: center;
+}
+
 .item-text {
     font-size: 16px;
     line-height: 1.6;
     color: #444;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    padding: 15px;
+    text-align: left; /* Change from center to left for better readability */
+    overflow-wrap: break-word;
 }
 
-/* Action buttons */
 .favorite-btn {
-    position: absolute;
-    top: 20px;
-    right: 90px;
+    position: static; 
+    margin-right: 10px; 
     width: 38px;
     height: 38px;
     border-radius: 50%;
@@ -122,7 +135,7 @@
     color: #ff4757;
     font-size: 22px;
     cursor: pointer;
-    display: flex;
+    display: inline-flex; 
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
@@ -134,9 +147,7 @@
 }
 
 .report-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    position: static; /* Remove absolute positioning */
     padding: 8px 16px;
     background-color: #f8f9fa;
     border: 1px solid #dc3545;
@@ -150,6 +161,13 @@
 .report-button:hover {
     background-color: #dc3545;
     color: white;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    padding: 20px 25px 0 25px;
+    text-align: left;
 }
 
 /* Edit/Delete section */
