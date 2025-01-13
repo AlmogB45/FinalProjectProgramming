@@ -182,9 +182,13 @@ function ItemPage() {
                             {item.location}
                         </span>
                     </div>
-                    <div className="item-desc mt-3">
+                    <div className="item-desc mt-3" >
                         <h2 className="item-h2">Item Description</h2>
-                        <p className="item-text">
+                        <p className="item-text"  dir={/[\u0590-\u05FF]/.test(item.description) ? 'rtl' : 'ltr'}
+        style={{ 
+            textAlign: /[\u0590-\u05FF]/.test(item.description) ? 'right' : 'left',
+            direction: /[\u0590-\u05FF]/.test(item.description) ? 'rtl' : 'ltr'
+        }} > 
                             {item.description.length > 400
                                 ? `${item.description.substring(0, 397)}...`
                                 : item.description}

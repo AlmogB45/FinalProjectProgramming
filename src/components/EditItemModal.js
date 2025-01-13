@@ -20,6 +20,7 @@ const EditItemModal = ({ show, handleClose, itemData, itemId, onItemUpdate }) =>
     const [selectedCity, setSelectedCity] = useState("");
     const [useRegisteredLocation, setUseRegisteredLocation] = useState(false);
     const [registeredLocation, setRegisteredLocation] = useState('');
+    
     // If modal is shown and itemData exists, allow new parameters to be set (edit existing)
     useEffect(() => {
         if (show && itemData) {

@@ -3,9 +3,9 @@ export const categoryLabels = {
     
     "Clothes": ["Women", "Men", "Boy", "Girl", "Baby", "Toddler", "Shirt", "Pants", "Coat", "Blazer", "Jeans", "Buttoned-Shirt", "Overall", "Dress", "Skirt", "Shoes", "Accessories", "Sportswear", "Formal", "Casual"],
     
-    "Appliances": ["Microwave", "Blender", "Mixer", "Toaster Oven", "Coffee Maker", "Fan", "Vacuum Cleaner", "Iron", "Hair Dryer", "Electric Kettle", "Shabbat Hot Plate"],
+    "Appliances": ["Microwave", "Blender", "Mixer", "Toaster Oven", "Grill", "Coffee Maker", "Fan", "Vacuum Cleaner", "Iron", "Hair Dryer", "Electric Kettle", "Shabbat Hot Plate"],
     
-    "Tools": ["Power Drill", "Saw", "Hammer", "Screwdriver Set", "Wrench", "Pliers", "Measuring Tape", "Level", "Cordless Tools", "Garden Tools", "Ladder", "Workbench", "Tool Box", "Safety Equipment", "Paint Supplies"],
+    "Tools": ["Power Drill", "Saw", "Hammer", "Screwdriver Set", "Wrench", "Pliers", "Knife", "Measuring Tape", "Level", "Cordless Tools", "Garden Tools", "Ladder", "Workbench", "Tool Box", "Safety Equipment", "Paint Supplies"],
     
     "Pets": ["Dog Supplies", "Cat Supplies", "Fish Tank", "Bird Cage", "Small Animal Habitat", "Pet Food", "Pet Toys", "Pet Bed", "Grooming Tools", "Leash/Collar", "Pet Carrier", "Litter Box", "Pet Clothes", "Pet Health Supplies", "Pet Training Equipment"],
     

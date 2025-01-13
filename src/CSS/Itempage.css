@@ -36,7 +36,7 @@
 /* Main content area */
 .item-card-body {
     padding: 25px;
-    text-align: center;
+    text-align: start;
 }
 
 /* Title */

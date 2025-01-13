@@ -65,6 +65,13 @@ const FilterPage = () => {
         );
     };
 
+    // Clear tags when category changes
+    const handleCategoryChange = (e) => {
+        const newCategory = e.target.value;
+        setSelectedCategory(newCategory);
+        setSelectedTags([]); // Reset tags when category changes
+    };
+
     return (
         <div className="filter-page">
             <Navbar />
@@ -82,7 +89,7 @@ const FilterPage = () => {
                     </select>
                     <select 
                         value={selectedCategory} 
-                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        onChange={handleCategoryChange}
                     >
                         <option value="">Select Category</option>
                         {categories.map(category => (

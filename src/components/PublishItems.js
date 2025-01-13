@@ -3,6 +3,7 @@ import { auth, db, storage } from '../Firebase/config';
 import { collection, addDoc, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { useNavigate, useParams } from 'react-router-dom';
+import { categoryLabels } from '../utils/CategoryLabels';
 import fetchCities from '../utils/cityApi';
 import Navbar from '../components/Navbar';
 import { toast } from 'react-toastify';
@@ -12,10 +13,9 @@ import '../CSS/PublishItem.css';
 function PublishItem() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [location, setLocation] = useState('');
+  const [categoryTitle, setCategoryTitle] = useState('');  const [location, setLocation] = useState('');
   const [images, setImages] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(Object.keys(categoryLabels));
   const [useRegisteredLocation, setUseRegisteredLocation] = useState(false);
   const [registeredLocation, setRegisteredLocation] = useState('');
   const [citiesList, setCitiesList] = useState([]);
@@ -24,14 +24,8 @@ function PublishItem() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategoriesAndUserLocation = async () => {
+    const fetchUserLocation = async () => {
       try {
-        // Fetch categories
-        const categoriesRef = collection(db, 'Categories');
-        const categoriesSnapshot = await getDocs(categoriesRef);
-        const categoriesData = categoriesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setCategories(categoriesData);
-
         // Fetch user's registered location
         if (auth.currentUser) {
           const userRef = doc(db, 'Users', auth.currentUser.uid);
@@ -42,11 +36,11 @@ function PublishItem() {
           }
         }
       } catch (err) {
-        console.error("Error fetching data:", err);
+        console.error("Error fetching user data:", err);
       }
     };
 
-    fetchCategoriesAndUserLocation();
+    fetchUserLocation();
   }, []);
 
   useEffect(() => {
@@ -68,38 +62,32 @@ function PublishItem() {
     })();
   }, []);
 
-  // Handle change of phone number
   const handlePhoneNumberChange = (e) => {
     const input = e.target.value;
     const cleaned = input.replace(/[^\d\s-]/g, '');
     setPhoneNumber(cleaned);
   };
 
-  // Handles image upload
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     const newImages = files.map(file => ({
       file,
       preview: URL.createObjectURL(file)
     }));
-    setImages(prevImages => [...prevImages, ...newImages].slice(0, 5)); // Limit to 5 images
-    toast.success("Succesfully added image!")
-
+    setImages(prevImages => [...prevImages, ...newImages].slice(0, 5));
+    toast.success("Successfully added image!");
   };
 
-  // Validates phone number 
   const validatePhoneNumber = (phone) => {
-    const phoneRegex = /^[0-9]{10}$/; // Basic validation for 10 digits
-    return phoneRegex.test(phone.replace(/[^\d]/g, '')); // Remove non-digits before testing
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phone.replace(/[^\d]/g, ''));
   };
 
-  // Removes uploaded image
   const removeImage = (index) => {
     setImages(prevImages => prevImages.filter((_, i) => i !== index));
-    toast.warning("Succesfully removed image!")
+    toast.warning("Successfully removed image!");
   };
 
-  // Handle the submit 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -129,7 +117,6 @@ function PublishItem() {
     }
 
     try {
-      // Upload images to Firebase Storage
       const imageUrls = await Promise.all(
         images.map(async (image) => {
           const imageRef = ref(storage, `items/${auth.currentUser.uid}/${Date.now()}_${image.file.name}`);
@@ -138,12 +125,11 @@ function PublishItem() {
         })
       );
 
-      // Add item to Firestore
       const itemsCollection = collection(db, 'Items');
       await addDoc(itemsCollection, {
         title,
         description,
-        categoryId: category,
+        categoryTitle, // Store the category title directly
         location: selectedCity,
         imageUrls,
         userId: auth.currentUser.uid,
@@ -154,11 +140,10 @@ function PublishItem() {
       toast.success('Item published successfully!');
       navigate('/mainpage');
     } catch (error) {
-      toast.error('Error publishing item:', error);
+      console.error('Error publishing item:', error);
       toast.error('Failed to publish item. Please try again.');
     }
   };
-
 
   return (
     <div className="publish-item-container">
@@ -168,30 +153,54 @@ function PublishItem() {
         <form className='publish-form' onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" value={title} onChange={(e) => { if (e.target.value.length <= 40) { setTitle(e.target.value); } }} required />
+            <input 
+              type="text" 
+              id="title" 
+              value={title} 
+              onChange={(e) => { if (e.target.value.length <= 40) { setTitle(e.target.value); } }} 
+              required 
+            />
             <small className={`char-count ${title.length > 40 ? 'text-danger' : ''}`}>
               {title.length}/40 characters
             </small>
           </div>
           <div className="form-group">
             <label htmlFor="description">Description</label>
-            <textarea id="publish-description" rows="3" value={description} onChange={(e) => {
-              if (e.target.value.length <= 400) { setDescription(e.target.value); }
-            }} required></textarea>
+            <textarea 
+              id="publish-description" 
+              rows="3" 
+              value={description} 
+              onChange={(e) => {
+                if (e.target.value.length <= 400) { setDescription(e.target.value); }
+              }} 
+              required
+            />
             <small className={`char-count ${description.length > 400 ? 'text-danger' : ''}`}>
               {description.length}/400 characters
             </small>
           </div>
           <div className="form-group">
             <label htmlFor="phoneNumber">Phone Number (10 digits)</label>
-            <input type="tel" id="publish-phoneNumber" value={phoneNumber} onChange={handlePhoneNumberChange} placeholder="Enter your phone number" required />
+            <input 
+              type="tel" 
+              id="publish-phoneNumber" 
+              value={phoneNumber} 
+              onChange={handlePhoneNumberChange} 
+              placeholder="Enter your phone number" 
+              required 
+            />
           </div>
           <div className="form-group">
             <label htmlFor="category">Category</label>
-            <select id="category" value={category} onChange={(e) => setCategory(e.target.value)} required>
+            <select 
+              id="category" 
+              value={categoryTitle} 
+              onChange={(e) => setCategoryTitle(e.target.value)} 
+              required
+            >
               <option value="">Select a category</option>
-              {categories.map(cat => (
-                <option key={cat.id} value={cat.id}>{cat.title}</option>
+              {categories.map(category => (
+                <option key={category} value={category}>{category}</option>
               ))}
             </select>
           </div>
@@ -230,7 +239,15 @@ function PublishItem() {
           </div>
           <div className="form-group">
             <label htmlFor="images">Images (Max 5)</label>
-            <input type="file" id="images" multiple accept="image/*" onChange={handleImageUpload} disabled={images.length >= 5} required />
+            <input 
+              type="file" 
+              id="images" 
+              multiple 
+              accept="image/*" 
+              onChange={handleImageUpload} 
+              disabled={images.length >= 5} 
+              required 
+            />
             <div className="image-preview-container">
               {images.map((image, index) => (
                 <div key={index} className="image-preview">
