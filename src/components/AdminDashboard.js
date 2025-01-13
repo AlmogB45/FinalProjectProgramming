@@ -43,7 +43,6 @@ const AdminDashboard = () => {
                 const userData = userDoc.data();
 
                 if (!userData.isAdmin) {
-                    // toast.error('Unauthorized access');
                     navigate('/mainpage');
                     return;
                 }
@@ -99,7 +98,6 @@ const AdminDashboard = () => {
 
             } catch (error) {
                 console.error('Error fetching dashboard data:', error);
-                // toast.error('Error loading dashboard data');
             } finally {
                 setLoading(false);
             }
