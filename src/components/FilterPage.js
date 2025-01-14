@@ -77,6 +77,7 @@ const FilterPage = () => {
             <Navbar />
             <div className="filter-container">
                 <h1 id='filt-title'>Filter Items</h1>
+                <p id='filt-text'>Notice: Only items that were labeled via the Edit option will appear upon selecting a category!</p>
                 <div className="filter-options">
                     <select 
                         value={selectedCity} 

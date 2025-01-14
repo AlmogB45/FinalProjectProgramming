@@ -21,6 +21,12 @@
     color: white;
 }
 
+#filt-text {
+    color: white;
+    font-size: small;
+    text-align: center;
+}
+
 .filter-options {
     display: flex;
     justify-content: space-between;
